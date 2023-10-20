@@ -12,11 +12,13 @@ import Book from "../assets/Book.jpg";
 
 const Home = () => {
   return (
-    <div className=" relative">
-      <img src={Sigiriya} />
-      <h1 className=" absolute text-5xl text-center uppercase left-0 right-0 top-[150px]">
-        Welcome to Sri Lanka
-      </h1>
+    <div>
+      <div className=" relative">
+        <img src={Sigiriya} />
+        <h1 className=" absolute text-5xl text-center uppercase left-0 right-0 top-[150px]">
+          Welcome to Sri Lanka
+        </h1>
+      </div> 
 
       <Navbar />
 
@@ -39,6 +41,7 @@ const Home = () => {
           adventure together; the magic of Sri Lanka awaits you!
         </p>
       </div>
+
       <div className="flex justify-between p-[60px]">
         <Event
           eventName="Attraction"
@@ -56,6 +59,7 @@ const Home = () => {
           eventDescription="Join the grand spectacle of Esala Perahera, one of Sri Lanka's most vibrant and enchanting festivals. This annual procession in Kandy features a magnificent display of traditional dance, music, beautifully adorned elephants, and fire-breathers. It's a sensory feast that will leave you spellbound."
         />
       </div>
+
       <div className="flex justify-between p-[60px]">
         <Event
           eventName="Adventure"
