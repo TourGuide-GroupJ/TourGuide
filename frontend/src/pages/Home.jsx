@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Event from "../component/Event";
+import ImageSlider from "../component/ImageSlider";
 
 //images
 import Beach from "../assets/Beach.jpg";
@@ -96,6 +97,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <ImageSlider />
     </div>
   );
 };
