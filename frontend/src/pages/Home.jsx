@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Event from "../component/Event";
 import ImageSlider from "../component/ImageSlider";
+import Division1 from "../component/Division1";
+import Footer from "../component/Footer";
+import SearchBar from "../component/SearchBar";
+
+
+
 
 //images
 import Beach from "../assets/Beach.jpg";
@@ -16,7 +22,8 @@ import StreetFood from "../assets/StreetFood.jpg";
 const Home = () => {
   return (
     <div>
-      <div className=" relative">
+      <div className="relative ">
+        <SearchBar />
         <img src={Beach} />
         <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center items-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
           Welcome to Sri Lanka
@@ -27,7 +34,7 @@ const Home = () => {
 
       <div className="p-5">
         <div>
-          <p className=" text-lg text-justify leading-7">
+          <p className="text-lg leading-7 text-justify ">
             Welcome to the ultimate Sri Lankan adventure companion! Our Tour
             Guide Web Application is your gateway to the enchanting wonders of
             this beautiful island. Explore a treasure trove of attractions,
@@ -96,9 +103,19 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <div className='flex justify-center'>
+                <div className='grid gap-10 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
+                    <div><Division1 image={ThingsToDo} text="Things to do and see"/></div>
+                    <div><Division1 image={Guide} text="Find your tour guide"/></div>
+                    <div><Division1 image={Accommodation} text="Find your accommodation"/></div>
+                    <div><Division1 image={Camping} text="Camping site"/></div>
+                    <div><Division1 image={Plan} text="Time scheduling & budget calculation"/></div>
+                    <div><Division1 image={Rent} text="Rent items"/></div>
+                </div>
+                </div>
       </div>
-
       <ImageSlider />
+      <Footer/>
     </div>
   );
 };
