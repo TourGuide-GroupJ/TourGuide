@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/attractions",
     element: <Attractions />,
-  },
+  }, 
 ]);
 
 function App() {

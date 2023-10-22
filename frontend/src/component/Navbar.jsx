@@ -12,8 +12,8 @@ const Navbar = () => {
           Travel Guide Sri Lanka
         </span>
       </div>
-      <div className="md:justify-end justify-start md:static absolute md:min-h-fit bg-black opacity-90 min-h-[35vh] left-0 top-[60px] w-full flex items-center px-5 z-20">
-        <ul className="flex md:flex-row flex-col md:items-center md:gap-4 gap-4">
+      <div className="md:justify-end justify-start md:static absolute md:min-h-fit bg-black opacity-90 min-h-[30vh] left-0 top-[80px] w-full flex items-center px-5 z-20">
+        <ul className="flex md:flex-row flex-col md:items-center gap-4">
           <li>
             <Link
               className="text-white  hover:text-gray-500 no-underline uppercase text-[16px] font-semibold"
