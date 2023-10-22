@@ -16,6 +16,7 @@ import Kithulgala from "../assets/Kithulgala.jpg";
 import Wild from "../assets/Wild.jpg";
 import StreetFood from "../assets/StreetFood.jpg";
 
+
 import ThingsToDo from "../assets/ThingsToDo2.jpg";
 import Guide from "../assets/Guide.jpg";
 import Accommodation from "../assets/Accommodations2.jpg";
