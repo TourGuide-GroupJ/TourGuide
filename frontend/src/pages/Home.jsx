@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Event from "../component/Event";
-import ImageSlider from "../component/ImageSlider";
+import Slider from "../component/Slider";
 
 //images
 import Beach from "../assets/Beach.jpg";
@@ -17,7 +17,8 @@ const Home = () => {
   return (
     <div>
       <div className=" relative">
-        <img src={Beach} />
+        <Slider />
+        {/* <img src={Beach} /> */}
         <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center items-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
           Welcome to Sri Lanka
         </h1>
@@ -97,8 +98,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <ImageSlider />
     </div>
   );
 };
