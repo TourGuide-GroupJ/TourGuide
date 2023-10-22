@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../component/Navbar";
 import Division from "../component/AttractCom";
+import Footer from "../component/Footer";
 
 //images
 import Hikkaduwa from "../assets/Hikkaduwa.jpg";
@@ -68,6 +69,9 @@ const Attractions = () => {
             <Division attractionName="Hikkaduwa" attractionImg={Hikkaduwa} />
           </div>
         </div>
+      </div>
+      <div className="mt-10">
+        <Footer />
       </div>
     </div>
   );

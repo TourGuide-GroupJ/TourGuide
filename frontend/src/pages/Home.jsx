@@ -145,7 +145,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="mt-10">
+        <Footer />
+      </div>
     </div>
   );
 };
