@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 
 export default function SearchBar() {
   return (
-    <div className="flex items-center justify-center w-auto p-0.5 text-white bg-white border-2 border-black rounded-3xl">
+    <div className="flex hotels-center justify-center w-auto p-0.5 text-white bg-white border-2 border-black rounded-3xl">
       <span>
         <BsSearch color="black" />
       </span>

@@ -18,40 +18,40 @@ export default function Guides() {
         <div className="flex justify-center left-2 right-2">
           <div className="grid gap-2 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
             <div className="col-span-2 grid grid-rows-5 gap-[5px]">
-               <div> 
-              <Guidcom
-                image={Guide}
-                guideName="thnuka"
-                guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used items by choosing an individual item from your clipboard menu.  Pinning an item keeps it from being removed from the clipboard history to make room for new items."
-              />
+              <div>
+                <Guidcom
+                  image={Guide}
+                  guideName="thnuka"
+                  guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used hotels by choosing an individual hotel from your clipboard menu.  Pinning an hotel keeps it from being removed from the clipboard history to make room for new hotels."
+                />
               </div>
               <div>
-              <Guidcom
-                image={Guide}
-                guideName="fdfdfdfs"
-                guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used items by choosing an individual item from your clipboard menu.  Pinning an item keeps it from being removed from the clipboard history to make room for new items."
-              />
+                <Guidcom
+                  image={Guide}
+                  guideName="fdfdfdfs"
+                  guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used hotels by choosing an individual hotel from your clipboard menu.  Pinning an hotel keeps it from being removed from the clipboard history to make room for new hotels."
+                />
               </div>
               <div>
-              <Guidcom
-                image={Guide}
-                guideName="fdfdfdf"
-                guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used items by choosing an individual item from your clipboard menu.  Pinning an item keeps it from being removed from the clipboard history to make room for new items."
-              />
+                <Guidcom
+                  image={Guide}
+                  guideName="fdfdfdf"
+                  guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used hotels by choosing an individual hotel from your clipboard menu.  Pinning an hotel keeps it from being removed from the clipboard history to make room for new hotels."
+                />
               </div>
               <div>
-              <Guidcom
-                image={Guide}
-                guideName="fdfdfd"
-                guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used items by choosing an individual item from your clipboard menu.  Pinning an item keeps it from being removed from the clipboard history to make room for new items."
-              />
+                <Guidcom
+                  image={Guide}
+                  guideName="fdfdfd"
+                  guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used hotels by choosing an individual hotel from your clipboard menu.  Pinning an hotel keeps it from being removed from the clipboard history to make room for new hotels."
+                />
               </div>
               <div>
-              <Guidcom
-                image={Guide}
-                guideName="fdfdfdfd"
-                guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used items by choosing an individual item from your clipboard menu.  Pinning an item keeps it from being removed from the clipboard history to make room for new items."
-              />
+                <Guidcom
+                  image={Guide}
+                  guideName="fdfdfdfd"
+                  guideDescription="To get to your clipboard history, press Windows logo key + V. From the clipboard history, you can paste and pin frequently used hotels by choosing an individual hotel from your clipboard menu.  Pinning an hotel keeps it from being removed from the clipboard history to make room for new hotels."
+                />
               </div>
             </div>
             <div className="col-span-1">
