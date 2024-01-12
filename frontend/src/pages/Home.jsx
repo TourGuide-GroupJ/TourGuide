@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Event from "../component/Event";
+import ImageSlider from "../component/ImageSlider";
 import Division1 from "../component/Division1";
 import Footer from "../component/Footer";
 import SearchBar from "../component/SearchBar";
-import Slider from "../component/Slider";
+
+
+
 
 //images
 import Beach from "../assets/Beach.jpg";
@@ -16,27 +19,15 @@ import Kithulgala from "../assets/Kithulgala.jpg";
 import Wild from "../assets/Wild.jpg";
 import StreetFood from "../assets/StreetFood.jpg";
 
-import ThingsToDo from "../assets/ThingsToDo2.jpg";
-import Guide from "../assets/Guide.jpg";
-import Accommodation from "../assets/Accommodations2.jpg";
-import Camping from "../assets/Camping.jpg";
-import Plan from "../assets/Plan.jpg";
-import Rent from "../assets/RentIem3.jpg";
-
 const Home = () => {
   return (
     <div>
       <div className="relative ">
-        {/* <img src={Beach} /> */}
-        <Slider />
-        <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center hotels-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
+        <SearchBar />
+        <img src={Beach} />
+        <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center items-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
           Welcome to Sri Lanka
         </h1>
-        <div className=" absolute w-full flex justify-center top-[50%]">
-          <div className=" w-min">
-            <SearchBar />
-          </div>
-        </div>
       </div>
 
       <Navbar />
@@ -75,25 +66,20 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link to="/event">
-              <div>
-                <Event
-                  eventName="Heritage"
-                  eventImg={DhaladaMaligawa}
-                  eventDescription="Immerse yourself in the spirituality and rich heritage of Sri Lanka at the Temple of the Tooth Relic. This sacred Buddhist temple in Kandy houses a relic of the Buddha's tooth, making it a significant pilgrimage site. The intricate architecture and serene ambiance create a truly awe-inspiring experience."
-                />
-              </div>
-            </Link>
-            <Link to="/festival">
-              <div>
-                <Event
-                  eventName="Festival"
-                  eventImg={KandyEsalaPerahera}
-                  eventDescription="Join the grand spectacle of Esala Perahera, one of Sri Lanka's most vibrant and enchanting festivals. This annual procession in Kandy features a magnificent display of traditional dance, music, beautifully adorned elephants, and fire-breathers. It's a sensory feast that will leave you spellbound."
-                />
-              </div>
-            </Link>
-
+            <div>
+              <Event
+                eventName="Heritage"
+                eventImg={DhaladaMaligawa}
+                eventDescription="Immerse yourself in the spirituality and rich heritage of Sri Lanka at the Temple of the Tooth Relic. This sacred Buddhist temple in Kandy houses a relic of the Buddha's tooth, making it a significant pilgrimage site. The intricate architecture and serene ambiance create a truly awe-inspiring experience."
+              />
+            </div>
+            <div>
+              <Event
+                eventName="Festival"
+                eventImg={KandyEsalaPerahera}
+                eventDescription="Join the grand spectacle of Esala Perahera, one of Sri Lanka's most vibrant and enchanting festivals. This annual procession in Kandy features a magnificent display of traditional dance, music, beautifully adorned elephants, and fire-breathers. It's a sensory feast that will leave you spellbound."
+              />
+            </div>
             <div>
               <Event
                 eventName="Adventure"
@@ -117,48 +103,19 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        <div className="mt-20 ml-[120px]">
-          <span className="text-2xl font-semibold">
-            Plannig Your Dream Holiday
-          </span>
-        </div>
-
-        <div className="flex justify-center">
-          <div className=" mt-12 max-w-[1200px] mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-20 gap-y-20">
-            <div>
-              <Division1 image={ThingsToDo} text="Things to do and see" />
-            </div>
-            <div>
-              <Division1 image={Guide} text="Find your tour guide" />
-            </div>
-            <Link to="/accommodation">
-              <div>
-                <Division1
-                  image={Accommodation}
-                  text="Find your accommodation"
-                />
-              </div>
-            </Link>
-
-            <div>
-              <Division1 image={Camping} text="Camping site" />
-            </div>
-            <div>
-              <Division1
-                image={Plan}
-                text="Time scheduling & budget calculation"
-              />
-            </div>
-            <div>
-              <Division1 image={Rent} text="Rent hotels" />
-            </div>
-          </div>
-        </div>
+        <div className='flex justify-center'>
+                <div className='grid gap-10 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
+                    <div><Division1 image={ThingsToDo} text="Things to do and see"/></div>
+                    <div><Division1 image={Guide} text="Find your tour guide"/></div>
+                    <div><Division1 image={Accommodation} text="Find your accommodation"/></div>
+                    <div><Division1 image={Camping} text="Camping site"/></div>
+                    <div><Division1 image={Plan} text="Time scheduling & budget calculation"/></div>
+                    <div><Division1 image={Rent} text="Rent items"/></div>
+                </div>
+                </div>
       </div>
-      <div className="mt-10">
-        <Footer />
-      </div>
+      <ImageSlider />
+      <Footer/>
     </div>
   );
 };

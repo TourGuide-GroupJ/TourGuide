@@ -4,11 +4,8 @@ import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Login from "./pages/Login";
 import Attractions from "./pages/Attractions";
-import Accomadation from "./pages/Accommodation";
-import Festival from "./pages/Festival";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { Hotel } from "@mui/icons-material";
 
 const router = createBrowserRouter([
   {
@@ -30,15 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/attractions",
     element: <Attractions />,
-  },
-  {
-    path: "/festival",
-    element: <Festival />,
-  },
-  {
-    path: "/accommodation",
-    element: <Accomadation />,
-  },
+  }, 
 ]);
 
 function App() {
