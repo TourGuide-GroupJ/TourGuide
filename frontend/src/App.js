@@ -2,10 +2,14 @@ import "./App.css";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
-import Login from "./pages/Login";
 import Attractions from "./pages/Attractions";
 import Accomadation from "./pages/Accommodation";
 import Festival from "./pages/Festival";
+import GuideReg from './pages/GuideReg';
+import Login from './pages/Login'; 
+import CreateAccount from './pages/CreateAccount';
+import Admin from './pages/Admin'; 
+import Guides from './pages/Guides';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { Hotel } from "@mui/icons-material";
@@ -39,6 +43,22 @@ const router = createBrowserRouter([
     path: "/accommodation",
     element: <Accomadation />,
   },
+  {
+    path:"/CreateAccount",
+    element: <CreateAccount/>,
+  },
+  {
+    path:"/GuideReg",
+    element:<GuideReg/>,
+  },
+  {
+    path:"/Admin",
+    element:<Admin/>,
+  },
+  {
+    path:"/Guides",
+    element:<Guides/>,
+  }
 ]);
 
 function App() {

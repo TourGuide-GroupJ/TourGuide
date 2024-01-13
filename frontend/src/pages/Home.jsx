@@ -8,7 +8,7 @@ import SearchBar from "../component/SearchBar";
 import Slider from "../component/Slider";
 
 //images
-import Beach from "../assets/Beach.jpg";
+//import Beach from "../assets/Beach.jpg";
 import NineArchBridge from "../assets/NineArchBridge.jpg";
 import DhaladaMaligawa from "../assets/DhaladaMaligawa.jpg";
 import KandyEsalaPerahera from "../assets/KandyEsalaPerahera.jpg";
@@ -129,9 +129,11 @@ const Home = () => {
             <div>
               <Division1 image={ThingsToDo} text="Things to do and see" />
             </div>
+            <Link to="/Guides">
             <div>
               <Division1 image={Guide} text="Find your tour guide" />
             </div>
+            </Link>
             <Link to="/accommodation">
               <div>
                 <Division1
