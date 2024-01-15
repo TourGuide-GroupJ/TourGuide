@@ -39,7 +39,7 @@ export default function CreateAccount() {
                         <Button1 btnName="Hotel Owner" />
                         <Link to="/GuideReg"><Button1 btnName="Guide" /></Link>
                         <Button1 btnName="Driver/Rent vehicals" />
-                        <Link to=""><Button1 btnName="Rent Camping Items" /></Link>
+                        <Link to="/GuideProf"><Button1 btnName="Rent Camping Items" /></Link>
 
                     </div>
                 </div>
@@ -47,5 +47,5 @@ export default function CreateAccount() {
             <div><Footer /></div>
             </div>
         </div >
-    )
+    );
 }
