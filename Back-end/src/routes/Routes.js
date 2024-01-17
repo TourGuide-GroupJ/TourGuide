@@ -2,6 +2,8 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const Guide = require("../models/guideModel.js");
 const { google } = require("googleapis");
+const otplib = require('otplib');
+
 
 const router = express.Router();
 
@@ -218,21 +220,11 @@ router.put("/guide/updateall/:id", (req, res) => {
 
 router.put("/guide/updateprofile/:id", async(req, res) => {
   try {
-    const guideEmail_Password = await Guide.findById(req.params.id).select("Email Password");
-    console.log(guideEmail_Password);
-
-    if (guideEmail_Password.Email !== req.body.Email || guideEmail_Password.Password !== req.body.Password) {
-      const guideOTP = Math.floor(1000+Math.random()*9000);
-      sendDynamicEmail("sriyaniwasa1@gmail.com","Your OTP",guideOTP);
-    }
-    else{
   Guide.findByIdAndUpdate(req.params.id, {
     FirstName: req.body.FirstName.charAt(0).toUpperCase() + req.body.FirstName.slice(1),
     LastName: req.body.LastName.charAt(0).toUpperCase() + req.body.LastName.slice(1),
     Language: req.body.Language,
-    Email:req.body.Email,
     ContactNumber: req.body.ContactNumber,
-    Password: req.body.Password,
   })
     .then((updatedGuide) => {
       console.log(req.body);
@@ -247,12 +239,45 @@ router.put("/guide/updateprofile/:id", async(req, res) => {
         Error: error,
       });
     });
-  }
   } catch (error) {
     console.log(error);
   }
 });
 
+router.put("/guide/updateprofilespecial/:id", async(req, res) => {
+  try {
+    const guideEmail_Password = await Guide.findById(req.params.id).select("Email Password");
+    console.log(guideEmail_Password);
+      const secret = otplib.authenticator.generateSecret();
+      const guideOTP = otplib.authenticator.generate(secret);
+      sendDynamicEmail("sriyaniwasa1@gmail.com","Your OTP",guideOTP);
+  Guide.findByIdAndUpdate(req.params.id, {
+    FirstName: req.body.FirstName.charAt(0).toUpperCase() + req.body.FirstName.slice(1),
+    LastName: req.body.LastName.charAt(0).toUpperCase() + req.body.LastName.slice(1),
+    Language: req.body.Language,
+    Email: req.body.Email,
+    ContactNumber: req.body.ContactNumber,
+    Password: req.body.Password
+  })
+    .then((updatedGuide) => {
+      console.log(req.body);
+      return res.status(200).json({
+        success: "Updated Successfully",
+        Guide: updatedGuide,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({
+        Error: error,
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//*********************************************************** 
 router.delete("/guide/delete/:id", (req, res) => {
   Guide.findByIdAndDelete(req.params.id)
     .then((guide) => {

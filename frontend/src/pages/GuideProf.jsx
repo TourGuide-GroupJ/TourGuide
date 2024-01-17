@@ -107,16 +107,31 @@ export default function GuideProf() {
   };
 
   const handleSave = async() => {
-    // Implement your save logic here, e.g., send updatedGuideData to the server
-    // After saving, you may want to update the original data as well
+    if (updatedGuideData.Email !== guideProfData.Email || updatedGuideData.Password !== guideProfData.Password) {
+      await axios.put(`http://localhost:4000/guide/updateprofilespecila/${gId}`,
+      { 
+        FirstName: updatedGuideData.FirstName,
+        LastName: updatedGuideData.LastName,
+        Language: updatedGuideData.Language,
+        Email: updatedGuideData.Email,
+        ContactNumber: updatedGuideData.ContactNumber,
+        Password: updatedGuideData.Password
+      })
+      .then((res)=>{
+        setGuideprofData({ ...updatedGuideData });
+        alert(res.status);
+      })
+      .catch((error)=>{
+        alert(error);
+      })
+    }
+    else{
     await axios.put(`http://localhost:4000/guide/updateprofile/${gId}`,
     { 
       FirstName: updatedGuideData.FirstName,
       LastName: updatedGuideData.LastName,
       Language: updatedGuideData.Language,
-      Email: updatedGuideData.Email,
-      ContactNumber: updatedGuideData.ContactNumber,
-      Password: updatedGuideData.Password
+      ContactNumber: updatedGuideData.ContactNumber
     })
     .then((res)=>{
       setGuideprofData({ ...updatedGuideData });
@@ -125,6 +140,7 @@ export default function GuideProf() {
     .catch((error)=>{
       alert(error);
     })
+  }
   };
 
 
