@@ -15,7 +15,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({
   refresh_token:
-    "1//04KMYRMzPSfZkCgYIARAAGAQSNwF-L9IryxGOxo7SMp_J5rLs8SyQIApC5Ez080LNjKQ94WUf-5QmVXurpgrIf2-nhJ63ZlHvhMk",
+    "1//048ser4LF3t2RCgYIARAAGAQSNwF-L9IrviBmrHTe7-Be3OBfNtrYzvlMwX7GbJceYxFEHhzQ3kriGc5ZTogtAQviZGxIvXZJq9o",
 });
 
 const transporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
       "888621362252-h0acbi8hkuio4c0hi887ttuob83upto0.apps.googleusercontent.com",
     clientSecret: "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",
     refreshToken:
-      "1//04igz78WV_wUeCgYIARAAGAQSNwF-L9Irac2Cb684VXB9bH8O5iiMnqSPdn5JLbzN4qKboQI_K12C3l9MDZQDRICGvTg2jHp-YfE",
+      "1//048ser4LF3t2RCgYIARAAGAQSNwF-L9IrviBmrHTe7-Be3OBfNtrYzvlMwX7GbJceYxFEHhzQ3kriGc5ZTogtAQviZGxIvXZJq9o",
     accessToken: oAuth2Client.getAccessToken(),
   },
 });
@@ -183,7 +183,7 @@ router.get("/guide", (req, res) => {
     });
 });
 
-//********************************************* Guide Profile
+//************************************************* Guide Profile
 router.get("/guide/guideprof/:id", (req, res) => {
   Guide.findById(req.params.id)
     .then((guide) => {
@@ -245,13 +245,6 @@ router.put("/guide/updateprofile/:id", async (req, res) => {
   }
 });
 
-/* otpGeneraterAndChecker = (e_mail)=>{
-  const secret = otplib.authenticator.generateSecret();
-  const guideOTP = otplib.authenticator.generate(secret);
-  sendDynamicEmail(e_mail,"Your OTP",guideOTP);
-  return otpChecker(secret);
-}*/
-
 const otpChecker = (secret, enteredOtp) => {
   const isValid = otplib.authenticator.check(enteredOtp, secret);
 
@@ -262,35 +255,62 @@ const otpChecker = (secret, enteredOtp) => {
   }
 };
 
+//*************************************************************************
+let profId = "";
+let profFirstName = "";
+let profLastName = "";
+let profLanguage = "";
+let profEmail = "";
+let profContactNumber = "";
+let profPassword = "";
+let profSecret = "";
+//*************************************************************************
+
 router.put("/guide/updateprofilespecial/:id", async (req, res) => {
   try {
     const guideEmail_Password = await Guide.findById(req.params.id).select(
       "Email Password"
     );
     console.log(guideEmail_Password);
-    const secret = otplib.authenticator.generateSecret();
+    profSecret = otplib.authenticator.generateSecret();
     const guideOTP = otplib.authenticator.generate(secret);
     sendDynamicEmail(guideEmail_Password.Email, "Your OTP", guideOTP);
+    //**********************************************************************
+    profId = req.params.id;
+    profFirstName =
+      req.body.FirstName.charAt(0).toUpperCase() + req.body.FirstName.slice(1);
+    profLastName =
+      req.body.LastName.charAt(0).toUpperCase() + req.body.LastName.slice(1);
+    profLanguage = req.body.Language;
+    profEmail = req.body.Email;
+    profContactNumber = req.body.ContactNumber;
+    profPassword = req.body.Password;
+    return res.status(200).json({
+      success: true,
+      message: "OTP is sent",
+    });
   } catch (error) {
     console.log(error);
+    return res.status(400).json({ 
+      success: false, 
+      message: "OTP is not sent" 
+    });
   }
 });
 
 router.post("/guide/specialupdate", async (req, res) => {
-  const enteredOtp = req.body.enteredOtp;
+  console.log("otp checking");
+  const enteredOtp = req.body.otp;
+  console.log(enteredOtp);
   const otpValidation = otpChecker(secret, enteredOtp);
   if (otpValidation) {
-    Guide.findByIdAndUpdate(req.params.id, {
-      FirstName:
-        req.body.FirstName.charAt(0).toUpperCase() +
-        req.body.FirstName.slice(1),
-      LastName:
-        req.body.LastName.charAt(0).toUpperCase() +
-        req.body.LastName.slice(1),
-      Language: req.body.Language,
-      Email: req.body.Email,
-      ContactNumber: req.body.ContactNumber,
-      Password: req.body.Password,
+    Guide.findByIdAndUpdate(id, {
+      FirstName: profFirstName,
+      LastName: profLastName,
+      Language: profLanguage,
+      Email: profEmail,
+      ContactNumber: profContactNumber,
+      Password: profPassword,
     })
       .then((updatedGuide) => {
         console.log(req.body);
@@ -310,6 +330,7 @@ router.post("/guide/specialupdate", async (req, res) => {
     return res.status(400).json({ success: false, message: "Invalid OTP" });
   }
 });
+
 
 //***********************************************************
 router.delete("/guide/delete/:id", (req, res) => {

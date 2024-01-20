@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import Button1 from "../component/Button1";
 import axios from "axios";
 import { Text2, Text3 } from "../component/Text1";
-import OTPModal from '../alert/OTPModal';
-
+import OTPModal from "../alert/OTPModal";
 
 export default function GuideProf() {
   const [showOtpModal, setShowOtpModal] = useState(false);
-  const [otp, setOtp] = useState('');
-
-  const [gId, setId] = useState("65999a726aed2717eb683aab");
+  
+  const [gId, setId] = useState("6599b18c19f7592eb91c4022");
   const [guideProfData, setGuideprofData] = useState({
     FirstName: "",
     LastName: "",
@@ -117,7 +115,8 @@ export default function GuideProf() {
     ) {
       setShowOtpModal(true);
       //await axios.post("",{}).then(()=>{}).catch(()=>{});
-      /*await axios.put(`http://localhost:4000/guide/updateprofilespecila/${gId}`, {
+      await axios
+        .put(`http://localhost:4000/guide/updateprofilespecial/${gId}`, {
           FirstName: updatedGuideData.FirstName,
           LastName: updatedGuideData.LastName,
           Language: updatedGuideData.Language,
@@ -126,18 +125,15 @@ export default function GuideProf() {
           Password: updatedGuideData.Password,
         })
         .then((res) => {
-          alert(res.status);
-          if(res.status===200){
-          setGuideprofData({ ...updatedGuideData });
+          alert(res.data.message);
+          if (res.status === 200) {
+            setGuideprofData({ ...updatedGuideData });
+          } else {
           }
-          else{
-            
-          }
-          
         })
         .catch((error) => {
           alert(error);
-        });*/
+        });
     } else {
       await axios
         .put(`http://localhost:4000/guide/updateprofile/${gId}`, {
@@ -336,7 +332,10 @@ export default function GuideProf() {
                 Click1={ClickEdit}
               />
             </div>
-           
+            <OTPModal
+              show={showOtpModal}
+              handleClose={() => setShowOtpModal(false)}
+            />
           </div>
         </div>
       </div>

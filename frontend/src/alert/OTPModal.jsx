@@ -1,39 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
+//, handleVerifyOtp, handleResendOtp
 
-export default function OTPModal({ show, handleClose, handleVerifyOtp, handleResendOtp }) {
-  const [otp, setOtp] = useState('');
-  const [alertMessage, setAlertMessage] = useState('');
+export default function OTPModal({ show, handleClose }) {
+  const [otp, setOtp] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (alertMessage) {
       // Automatically close the alert after 3 seconds
       const timer = setTimeout(() => {
-        setAlertMessage('');
+        setAlertMessage("");
         handleClose();
-      }, 3000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
   }, [alertMessage, handleClose]);
 
   const handleVerify = async () => {
-    const success = await handleVerifyOtp(otp);
-    if (success) {
-      setAlertMessage('OTP verified successfully!');
-    } else {
-      setAlertMessage('Invalid OTP. Please try again.');
-    }
+    await axios
+      .post("http://localhost:4000/guide/specialupdate", { otp })
+      .then((res) => {
+        const success = res.data.success;
+        if (success) {
+          setAlertMessage("OTP verified successfully!");
+        } else {
+          setAlertMessage("Invalid OTP. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <div className={`fixed z-10 inset-0 overflow-y-auto ${show ? 'block' : 'hidden'}`}>
+    <div
+      className={`fixed z-10 inset-0 overflow-y-auto ${
+        show ? "block" : "hidden"
+      }`}
+    >
       <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         <div className="fixed inset-0 transition-opacity" aria-hidden="true">
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
-        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+        <span
+          className="hidden sm:inline-block sm:align-middle sm:h-screen"
+          aria-hidden="true"
+        >
           &#8203;
         </span>
 
@@ -46,7 +62,10 @@ export default function OTPModal({ show, handleClose, handleVerifyOtp, handleRes
           <div className="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
             <div className="sm:flex sm:items-start">
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 className="text-lg font-medium leading-6 text-gray-900" id="modal-headline">
+                <h3
+                  className="text-lg font-medium leading-6 text-gray-900"
+                  id="modal-headline"
+                >
                   Enter OTP
                 </h3>
                 <div className="mt-2">
@@ -71,13 +90,6 @@ export default function OTPModal({ show, handleClose, handleVerifyOtp, handleRes
               Verify OTP
             </button>
             <button
-              onClick={handleResendOtp}
-              type="button"
-              className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-            >
-              Resend OTP
-            </button>
-            <button
               onClick={handleClose}
               type="button"
               className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
@@ -89,5 +101,14 @@ export default function OTPModal({ show, handleClose, handleVerifyOtp, handleRes
       </div>
     </div>
   );
-};
+}
 
+/*
+<button
+              onClick={handleResendOtp}
+              type="button"
+              className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            >
+              Resend OTP
+            </button>
+*/
