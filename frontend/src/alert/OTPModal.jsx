@@ -13,7 +13,7 @@ export default function OTPModal({ show, handleClose }) {
       const timer = setTimeout(() => {
         setAlertMessage("");
         handleClose();
-      }, 8000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
