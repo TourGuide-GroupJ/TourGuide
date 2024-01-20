@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import Button1 from "../component/Button1";
 import axios from "axios";
 import { Text2, Text3 } from "../component/Text1";
-//import { Input } from '@mui/material';
+import OTPModal from '../alert/OTPModal';
+
 
 export default function GuideProf() {
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [otp, setOtp] = useState('');
+
   const [gId, setId] = useState("65999a726aed2717eb683aab");
   const [guideProfData, setGuideprofData] = useState({
     FirstName: "",
@@ -106,45 +110,51 @@ export default function GuideProf() {
     setUpdatedGuideData({ ...guideProfData }); // Copy the original data for editing
   };
 
-  const handleSave = async() => {
-    if (updatedGuideData.Email !== guideProfData.Email || updatedGuideData.Password !== guideProfData.Password) {
-      await axios.put(`http://localhost:4000/guide/updateprofilespecila/${gId}`,
-      { 
-        FirstName: updatedGuideData.FirstName,
-        LastName: updatedGuideData.LastName,
-        Language: updatedGuideData.Language,
-        Email: updatedGuideData.Email,
-        ContactNumber: updatedGuideData.ContactNumber,
-        Password: updatedGuideData.Password
-      })
-      .then((res)=>{
-        setGuideprofData({ ...updatedGuideData });
-        alert(res.status);
-      })
-      .catch((error)=>{
-        alert(error);
-      })
+  const handleSave = async () => {
+    if (
+      updatedGuideData.Email !== guideProfData.Email ||
+      updatedGuideData.Password !== guideProfData.Password
+    ) {
+      setShowOtpModal(true);
+      //await axios.post("",{}).then(()=>{}).catch(()=>{});
+      /*await axios.put(`http://localhost:4000/guide/updateprofilespecila/${gId}`, {
+          FirstName: updatedGuideData.FirstName,
+          LastName: updatedGuideData.LastName,
+          Language: updatedGuideData.Language,
+          Email: updatedGuideData.Email,
+          ContactNumber: updatedGuideData.ContactNumber,
+          Password: updatedGuideData.Password,
+        })
+        .then((res) => {
+          alert(res.status);
+          if(res.status===200){
+          setGuideprofData({ ...updatedGuideData });
+          }
+          else{
+            
+          }
+          
+        })
+        .catch((error) => {
+          alert(error);
+        });*/
+    } else {
+      await axios
+        .put(`http://localhost:4000/guide/updateprofile/${gId}`, {
+          FirstName: updatedGuideData.FirstName,
+          LastName: updatedGuideData.LastName,
+          Language: updatedGuideData.Language,
+          ContactNumber: updatedGuideData.ContactNumber,
+        })
+        .then((res) => {
+          setGuideprofData({ ...updatedGuideData });
+          alert(res.status);
+        })
+        .catch((error) => {
+          alert(error);
+        });
     }
-    else{
-    await axios.put(`http://localhost:4000/guide/updateprofile/${gId}`,
-    { 
-      FirstName: updatedGuideData.FirstName,
-      LastName: updatedGuideData.LastName,
-      Language: updatedGuideData.Language,
-      ContactNumber: updatedGuideData.ContactNumber
-    })
-    .then((res)=>{
-      setGuideprofData({ ...updatedGuideData });
-      alert(res.status);
-    })
-    .catch((error)=>{
-      alert(error);
-    })
-  }
   };
-
-
-
 
   return (
     <div className="flex justify-center">
@@ -326,9 +336,17 @@ export default function GuideProf() {
                 Click1={ClickEdit}
               />
             </div>
+           
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+/*<OTPModal
+show={showOtpModal}
+handleClose={() => setShowOtpModal(false)}
+handleVerifyOtp={handleVerifyOtp}
+handleResendOtp={handleResendOtp}
+/>*/
