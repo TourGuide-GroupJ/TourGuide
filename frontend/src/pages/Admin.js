@@ -7,6 +7,8 @@ export default function Admin() {
   let [newGuide, setNewGuide] = useState({});
   const [gId, setId] = useState("");
   let [guideName, setGuideName] = useState();
+  let [accept, setAccept] = useState(false);
+  let [block, setBlock] = useState(false);
 
   const DBID = (Event) => {
     setId(Event.target.value);
@@ -20,6 +22,8 @@ export default function Admin() {
         .then((res) => {
           setNewGuide((newGuide = res.data.Guide));
           setGuideName(newGuide.FirstName + " " + newGuide.LastName);
+          setAccept(newGuide.IsAccepted);
+          setBlock(newGuide.IsBlocked);
           console.log(newGuide);
         })
         .catch((error) => {
@@ -48,18 +52,36 @@ export default function Admin() {
   }
 
   async function Block() {
-    try {
-      await axios
-        .patch(`http://localhost:4000/guide/admin/block/${gId}`)
-        .then(() => {
-          console.log("Blocked");
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
+    if (block) {
+      try {
+        await axios
+          .patch(`http://localhost:4000/guide/admin/unblock/${gId}`)
+          .then(() => {
+            console.log("Unblocked");
+            setBlock(false);
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+      }
+    } else {
+      try {
+        await axios
+          .patch(`http://localhost:4000/guide/admin/block/${gId}`)
+          .then(() => {
+            console.log("Blocked");
+            setBlock(true);
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+      }
     }
   }
 
@@ -164,10 +186,13 @@ export default function Admin() {
           </table>
           <div className="flex flex-row justify-between">
             <div>
-              <Button1 btnName="Accept" Click1={Accept} />
+              <Button1
+                btnName={accept ? "Accepted" : "Accept"}
+                Click1={Accept}
+              />
             </div>
             <div>
-              <Button1 btnName="Block" Click1={Block} />
+              <Button1 btnName={block ? "Unblock" : "Block"} Click1={Block} />
             </div>
             <div>
               <Button1 btnName="Delete" Click1={Delete} />

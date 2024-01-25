@@ -15,7 +15,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({
   refresh_token:
-    "1//048ser4LF3t2RCgYIARAAGAQSNwF-L9IrviBmrHTe7-Be3OBfNtrYzvlMwX7GbJceYxFEHhzQ3kriGc5ZTogtAQviZGxIvXZJq9o",
+    "1//04IObyUnG8STDCgYIARAAGAQSNwF-L9Irade4WGe2C8JJo4edZE1DARBWxUhUHDN6hGYbdoyysbyK2PfAWOKZltRa2rK4OI-o4TU",
 });
 
 const transporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
       "888621362252-h0acbi8hkuio4c0hi887ttuob83upto0.apps.googleusercontent.com",
     clientSecret: "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",
     refreshToken:
-      "1//048ser4LF3t2RCgYIARAAGAQSNwF-L9IrviBmrHTe7-Be3OBfNtrYzvlMwX7GbJceYxFEHhzQ3kriGc5ZTogtAQviZGxIvXZJq9o",
+      "1//04IObyUnG8STDCgYIARAAGAQSNwF-L9Irade4WGe2C8JJo4edZE1DARBWxUhUHDN6hGYbdoyysbyK2PfAWOKZltRa2rK4OI-o4TU",
     accessToken: oAuth2Client.getAccessToken(),
   },
 });
@@ -102,7 +102,7 @@ router.post("/guide/save", async (req, res) => {
 router.get("/guide/search/:id", (req, res) => {
   Guide.findById(req.params.id)
     .select(
-      "FirstName LastName NIC_Number GuideId_Number GuideId_ExpiredDate GuideType Language Email ContactNumber"
+      "FirstName LastName NIC_Number GuideId_Number GuideId_ExpiredDate GuideType Language Email ContactNumber IsAccepted IsBlocked "
     )
     .then((guide) => {
       return res.status(200).json({
@@ -123,7 +123,7 @@ router.patch("/guide/admin/accept/:id", (req, res) => {
     .then(() => {
       console.log("Accepted");
       return res.status(200).json({
-        success: "Updated Successfully",
+        message: "Accepted",
       });
     })
     .catch((error) => {
@@ -139,7 +139,23 @@ router.patch("/guide/admin/block/:id", (req, res) => {
     .then(() => {
       console.log("Blocked");
       return res.status(200).json({
-        success: "Updated Successfully",
+        message: "Blocked",
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({
+        Error: error,
+      });
+    });
+});
+
+router.patch("/guide/admin/unblock/:id", (req, res) => {
+  Guide.findByIdAndUpdate(req.params.id, { IsBlocked: false })
+    .then(() => {
+      console.log("Unblocked");
+      return res.status(200).json({
+        message: "Unblocked",
       });
     })
     .catch((error) => {
@@ -205,7 +221,7 @@ router.put("/guide/updateall/:id", (req, res) => {
     .then(() => {
       console.log(req.body);
       return res.status(200).json({
-        success: "Updated Successfully",
+        message: "Updated Successfully",
       });
     })
     .catch((error) => {
@@ -230,7 +246,8 @@ router.put("/guide/updateprofile/:id", async (req, res) => {
       .then((updatedGuide) => {
         console.log(req.body);
         return res.status(200).json({
-          success: "Updated Successfully",
+          success: true,
+          message: "Updated Successfully",
           Guide: updatedGuide,
         });
       })
@@ -244,16 +261,6 @@ router.put("/guide/updateprofile/:id", async (req, res) => {
     console.log(error);
   }
 });
-
-const otpChecker = (secret, enteredOtp) => {
-  const isValid = otplib.authenticator.check(enteredOtp, secret);
-
-  if (isValid) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 //*************************************************************************
 let profId = "";
@@ -272,9 +279,6 @@ router.put("/guide/updateprofilespecial/:id", async (req, res) => {
       "Email Password"
     );
     console.log(guideEmail_Password);
-    profSecret = otplib.authenticator.generateSecret();
-    const guideOTP = otplib.authenticator.generate(secret);
-    sendDynamicEmail(guideEmail_Password.Email, "Your OTP", guideOTP);
     //**********************************************************************
     profId = req.params.id;
     profFirstName =
@@ -285,26 +289,46 @@ router.put("/guide/updateprofilespecial/:id", async (req, res) => {
     profEmail = req.body.Email;
     profContactNumber = req.body.ContactNumber;
     profPassword = req.body.Password;
-    return res.status(200).json({
-      success: true,
-      message: "OTP is sent",
-    });
+    //***********************************************************************
+    const existingGuide = await Guide.findOne({ Email: profEmail });
+    if (existingGuide && guideEmail_Password.Email !== profEmail) {
+      // Email already registered
+      return res.status(400).json({
+        success: false,
+        message: "Email already in use.",
+      });
+    } else {
+      profSecret = otplib.authenticator.generateSecret();
+      console.log(profSecret);
+      const guideOTP = otplib.authenticator.generate(profSecret);
+      console.log(guideOTP);
+      sendDynamicEmail(profEmail, "Your OTP", guideOTP);
+      return res.status(200).json({
+        success: true,
+        message: "OTP is sent",
+      });
+    }
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ 
-      success: false, 
-      message: "OTP is not sent" 
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
     });
   }
 });
 
-router.post("/guide/specialupdate", async (req, res) => {
+//**********************************************************************Never change 
+router.post("/guide/otpalertupdate", async (req, res) => {
   console.log("otp checking");
   const enteredOtp = req.body.otp;
-  console.log(enteredOtp);
-  const otpValidation = otpChecker(secret, enteredOtp);
+  console.log("Entered OTP:", enteredOtp);
+  const otpValidation = otplib.authenticator.check(enteredOtp, profSecret);
+  console.log(otpValidation);
+
+
+
   if (otpValidation) {
-    Guide.findByIdAndUpdate(id, {
+    Guide.findByIdAndUpdate(profId, {
       FirstName: profFirstName,
       LastName: profLastName,
       Language: profLanguage,
@@ -313,7 +337,7 @@ router.post("/guide/specialupdate", async (req, res) => {
       Password: profPassword,
     })
       .then((updatedGuide) => {
-        console.log(req.body);
+        console.log("Guide updated successfully:", updatedGuide);
         return res.status(200).json({
           success: true,
           message: "OTP verified successfully",
@@ -321,16 +345,20 @@ router.post("/guide/specialupdate", async (req, res) => {
         });
       })
       .catch((error) => {
-        console.error("Error verifying OTP:", error);
-        return res
-          .status(500)
-          .json({ success: false, message: "Internal Server Error" });
+        console.error("Error updating guide:", error);
+        return res.status(500).json({
+          success: false,
+          message: "Internal Server Error",
+        });
       });
   } else {
-    return res.status(400).json({ success: false, message: "Invalid OTP" });
+    console.log("Invalid OTP");
+    return res.status(200).json({
+      success: false,
+      message: "Invalid OTP",
+    });
   }
 });
-
 
 //***********************************************************
 router.delete("/guide/delete/:id", (req, res) => {

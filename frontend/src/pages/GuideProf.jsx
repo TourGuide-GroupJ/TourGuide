@@ -53,7 +53,7 @@ export default function GuideProf() {
 
   useEffect(() => {
     guideProf();
-  }, []);
+  }, [gId]);
 
   const firstName = (Event) => {
     setUpdatedGuideData({
@@ -72,7 +72,7 @@ export default function GuideProf() {
   const language = (Event) => {
     setUpdatedGuideData({
       ...updatedGuideData,
-      Language: Event.target.value,
+      Language: [Event.target.value],
     });
   };
 
@@ -144,7 +144,7 @@ export default function GuideProf() {
         })
         .then((res) => {
           setGuideprofData({ ...updatedGuideData });
-          alert(res.status);
+          alert(res.data.message);
         })
         .catch((error) => {
           alert(error);
@@ -335,6 +335,7 @@ export default function GuideProf() {
             <OTPModal
               show={showOtpModal}
               handleClose={() => setShowOtpModal(false)}
+              //otpURI="http://localhost:4000/guide/otpalertupdate"
             />
           </div>
         </div>

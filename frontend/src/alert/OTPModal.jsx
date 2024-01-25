@@ -9,7 +9,7 @@ export default function OTPModal({ show, handleClose }) {
 
   useEffect(() => {
     if (alertMessage) {
-      // Automatically close the alert after 3 seconds
+      // Automatically close the alert after 5 seconds
       const timer = setTimeout(() => {
         setAlertMessage("");
         handleClose();
@@ -21,19 +21,38 @@ export default function OTPModal({ show, handleClose }) {
 
   const handleVerify = async () => {
     await axios
-      .post("http://localhost:4000/guide/specialupdate", { otp })
+      .post(`http://localhost:4000/guide/otpalertupdate`, { otp })
       .then((res) => {
         const success = res.data.success;
+        console.log(success);
         if (success) {
           setAlertMessage("OTP verified successfully!");
         } else {
           setAlertMessage("Invalid OTP. Please try again.");
         }
+        setOtp(null);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  /*const handleVerify = async () => {
+    try {
+      const response = await axios.post("http://localhost:4000/guide/otpalertupdate", { otp });
+  
+      const success = response.data.success;
+      if (success) {
+        setAlertMessage("OTP verified successfully!");
+      } else {
+        setAlertMessage("Invalid OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error in handleVerify:", error);
+      console.log("Error response:", error.response); // Log the detailed error response
+    }
+  };*/
+  
 
   return (
     <div
