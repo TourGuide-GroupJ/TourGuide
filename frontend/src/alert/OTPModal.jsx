@@ -30,7 +30,7 @@ export default function OTPModal({ show, handleClose }) {
         } else {
           setAlertMessage("Invalid OTP. Please try again.");
         }
-        setOtp(null);
+        setOtp("");
       })
       .catch((error) => {
         console.log(error);

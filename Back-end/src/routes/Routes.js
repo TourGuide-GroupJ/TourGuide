@@ -322,6 +322,7 @@ router.post("/guide/otpalertupdate", async (req, res) => {
   console.log("otp checking");
   const enteredOtp = req.body.otp;
   console.log("Entered OTP:", enteredOtp);
+  console.log(profSecret);
   const otpValidation = otplib.authenticator.check(enteredOtp, profSecret);
   console.log(otpValidation);
 
