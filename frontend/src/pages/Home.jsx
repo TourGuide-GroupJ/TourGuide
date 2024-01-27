@@ -16,6 +16,7 @@ import Kithulgala from "../assets/Kithulgala.jpg";
 import Wild from "../assets/Wild.jpg";
 import StreetFood from "../assets/StreetFood.jpg";
 
+
 import ThingsToDo from "../assets/ThingsToDo2.jpg";
 import Guide from "../assets/Guide.jpg";
 import Accommodation from "../assets/Accommodations2.jpg";
@@ -118,7 +119,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="mt-20 ml-[120px]">
+        <div className="mt-20 ml-[200px]">
           <span className="text-2xl font-semibold">
             Plannig Your Dream Holiday
           </span>
