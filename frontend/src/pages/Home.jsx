@@ -8,7 +8,7 @@ import SearchBar from "../component/SearchBar";
 import Slider from "../component/Slider";
 
 //images
-import Beach from "../assets/Beach.jpg";
+//import Beach from "../assets/Beach.jpg";
 import NineArchBridge from "../assets/NineArchBridge.jpg";
 import DhaladaMaligawa from "../assets/DhaladaMaligawa.jpg";
 import KandyEsalaPerahera from "../assets/KandyEsalaPerahera.jpg";
@@ -30,7 +30,7 @@ const Home = () => {
       <div className="relative ">
         {/* <img src={Beach} /> */}
         <Slider />
-        <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center items-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
+        <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center hotels-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
           Welcome to Sri Lanka
         </h1>
         <div className=" absolute w-full flex justify-center top-[50%]">
@@ -76,20 +76,25 @@ const Home = () => {
               </div>
             </Link>
 
-            <div>
-              <Event
-                eventName="Heritage"
-                eventImg={DhaladaMaligawa}
-                eventDescription="Immerse yourself in the spirituality and rich heritage of Sri Lanka at the Temple of the Tooth Relic. This sacred Buddhist temple in Kandy houses a relic of the Buddha's tooth, making it a significant pilgrimage site. The intricate architecture and serene ambiance create a truly awe-inspiring experience."
-              />
-            </div>
-            <div>
-              <Event
-                eventName="Festival"
-                eventImg={KandyEsalaPerahera}
-                eventDescription="Join the grand spectacle of Esala Perahera, one of Sri Lanka's most vibrant and enchanting festivals. This annual procession in Kandy features a magnificent display of traditional dance, music, beautifully adorned elephants, and fire-breathers. It's a sensory feast that will leave you spellbound."
-              />
-            </div>
+            <Link to="/event">
+              <div>
+                <Event
+                  eventName="Heritage"
+                  eventImg={DhaladaMaligawa}
+                  eventDescription="Immerse yourself in the spirituality and rich heritage of Sri Lanka at the Temple of the Tooth Relic. This sacred Buddhist temple in Kandy houses a relic of the Buddha's tooth, making it a significant pilgrimage site. The intricate architecture and serene ambiance create a truly awe-inspiring experience."
+                />
+              </div>
+            </Link>
+            <Link to="/festival">
+              <div>
+                <Event
+                  eventName="Festival"
+                  eventImg={KandyEsalaPerahera}
+                  eventDescription="Join the grand spectacle of Esala Perahera, one of Sri Lanka's most vibrant and enchanting festivals. This annual procession in Kandy features a magnificent display of traditional dance, music, beautifully adorned elephants, and fire-breathers. It's a sensory feast that will leave you spellbound."
+                />
+              </div>
+            </Link>
+
             <div>
               <Event
                 eventName="Adventure"
@@ -125,12 +130,20 @@ const Home = () => {
             <div>
               <Division1 image={ThingsToDo} text="Things to do and see" />
             </div>
+            <Link to="/Guides">
             <div>
               <Division1 image={Guide} text="Find your tour guide" />
             </div>
-            <div>
-              <Division1 image={Accommodation} text="Find your accommodation" />
-            </div>
+            </Link>
+            <Link to="/accommodation">
+              <div>
+                <Division1
+                  image={Accommodation}
+                  text="Find your accommodation"
+                />
+              </div>
+            </Link>
+
             <div>
               <Division1 image={Camping} text="Camping site" />
             </div>
@@ -141,7 +154,7 @@ const Home = () => {
               />
             </div>
             <div>
-              <Division1 image={Rent} text="Rent items" />
+              <Division1 image={Rent} text="Rent hotels" />
             </div>
           </div>
         </div>
