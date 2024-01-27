@@ -114,7 +114,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="mt-20 ml-[120px]">
+        <div className="mt-20 ml-[200px]">
           <span className="text-2xl font-semibold">
             Plannig Your Dream Holiday
           </span>

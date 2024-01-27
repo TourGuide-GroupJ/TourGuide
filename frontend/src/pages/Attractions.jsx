@@ -23,8 +23,8 @@ const Attractions = () => {
           Atrractions
         </h1>
       </div>
-      <div className="mt-5 ml-[150px] max-w-[1000px] mx-auto">
-        <h2 className=" font-semibold text-2xl">Recommended</h2>
+      <div className="mt-5 ml-[230px] max-w-[1000px] mx-auto">
+        <h2 className="text-2xl font-semibold]">Recommended</h2>
       </div>
 
       <div className="flex justify-center">

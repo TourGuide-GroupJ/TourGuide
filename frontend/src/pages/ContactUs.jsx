@@ -4,6 +4,7 @@ import Footer from "../component/Footer";
 import image from "../assets/Fisherman.jpg";
 
 const ContactUs = () => {
+
   return (
     <div>
       <Navbar />
@@ -14,8 +15,8 @@ const ContactUs = () => {
       </div>
       <div className="p-10 bg-white w-[1000px] H-[500px]">
         <div>
-          <span className="mt-0 text-3xl">CONTACT US</span>
-          <form>
+          <span className="mt-0 text-4xl font-bold text-green-600">CONTACT US</span>
+          <form >
             <div>
                 <div className="mt-5">
                 <p>Your Name:</p>
@@ -70,7 +71,7 @@ const ContactUs = () => {
           </form>
         </div>
         <div className="mt-10">
-          <span className="text-3xl ">CONTACT INFO</span>
+          <span className="text-3xl font-bold">CONTACT INFO</span>
           <div className="mt-5">
           <span className="text-2xl ">Mobile:</span>
           </div>
