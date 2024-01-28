@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 
+// layouts
+import AdminLayout from "./layouts/AdminLayout";
+
 //First 6 components
 import Attractions from "./pages/Attractions";
 import Heritage from "./pages/Heritage";
@@ -18,10 +21,11 @@ import RentItems from "./pages/RentItems";
 
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
-import Admin from "./pages/Admin";
+import AdminGuide from "./pages/AdminGuide";
 import Guides from "./pages/Guides";
 import GuideProf from "./pages/GuideProf";
 import HotelReg from "./pages/HotelReg";
+import AdminHotel from "./pages/AdminHotel";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -100,12 +104,24 @@ const router = createBrowserRouter([
     element: <HotelReg />,
   },
   {
-    path: "/Admin",
-    element: <Admin />,
-  },
-  {
     path: "/GuideProf",
     element: <GuideProf />,
+  },
+
+  //Layout routs
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/admin/adminGuide",
+        element: <AdminGuide />,
+      },
+      {
+        path: "/admin/adminHotel",
+        element: <AdminHotel />,
+      },
+    ],
   },
 ]);
 

@@ -5,3 +5,4 @@ const AdminHotel = () => {
 };
 
 export default AdminHotel;
+
