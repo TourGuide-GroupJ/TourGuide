@@ -12,10 +12,18 @@ export default function HotelReg() {
   };
 
   //Hotel types
-  let [types, setTypes] = useState();
+  const [types, setTypes] = useState();
+  // const HotelType = (Event) => {
+  //   setTypes(Event.target.id);
+  //   //console.log(types);
+  // };
+
+  const [classType, setClassType] = useState();
   const HotelType = (Event) => {
     setTypes(Event.target.id);
-    //console.log(types);
+    if (Event.target.id === "Hotel") {
+      setClassType(undefined);
+    }
   };
 
   //show password check box
@@ -148,10 +156,10 @@ export default function HotelReg() {
         </div>
         <form action="" method="post">
           <div className="flex justify-center">
-            <div className="flex justify-center lg:w-[500px] lg:h-[600px] bg-white rounded-xl">
+            <div className="flex justify-center lg:w-[500px]  bg-white rounded-xl">
               <div className="flex flex-col justify-center gap-3 p-2 ">
                 <div className="flex flex-col gap-2">
-                  <div className="font-semibold">First name*</div>
+                  <div className="mt-5 font-semibold">First name*</div>
                   <div>
                     <Text1
                       plcHolder="Enter Hotel Name"
@@ -171,32 +179,77 @@ export default function HotelReg() {
                 </div>
 
                 <div className="flex flex-col w-40 gap-2">
-                  <div className="font-semibold">Hotel type*</div>
                   <div>
-                    <Radio
-                      rBtn="Hotel"
-                      name="type"
-                      id="Hotel"
-                      isTrue={HotelType}
-                    />
-                    <Radio
-                      rBtn="Resort"
-                      name="type"
-                      id="Chauffeur"
-                      isTrue={HotelType}
-                    />
-                    <Radio
-                      rBtn="Bungalow"
-                      name="type"
-                      id="Bungalow"
-                      isTrue={HotelType}
-                    />
-                    <Radio
-                      rBtn="Inns"
-                      name="type"
-                      id="Inns"
-                      isTrue={HotelType}
-                    />
+                    <div className="flex flex-col w-40 gap-2">
+                      <div className="font-semibold">Hotel type*</div>
+                      <div>
+                        <Radio
+                          rBtn="Hotel"
+                          name="type"
+                          id="Hotel"
+                          isTrue={HotelType}
+                        />
+                        {types === "Hotel" && (
+                          <div className="ml-8">
+                            <label className="font-semibold">
+                              Hotel Class*
+                            </label>
+                            <div>
+                              <Radio
+                                rBtn="1 Star"
+                                name="classType"
+                                id="1Star"
+                                isTrue={() => setClassType("1 Star")}
+                              />
+                              <Radio
+                                rBtn="2 Star"
+                                name="classType"
+                                id="2Star"
+                                isTrue={() => setClassType("2 Star")}
+                              />
+                              <Radio
+                                rBtn="3 Star"
+                                name="classType"
+                                id="3Star"
+                                isTrue={() => setClassType("3 Star")}
+                              />
+                              <Radio
+                                rBtn="4 Star"
+                                name="classType"
+                                id="4Star"
+                                isTrue={() => setClassType("4 Star")}
+                              />
+                              <Radio
+                                rBtn="5 Star"
+                                name="classType"
+                                id="5Star"
+                                isTrue={() => setClassType("5 Star")}
+                              />
+                            </div>
+                          </div>
+                        )}
+                        <div>
+                          <Radio
+                            rBtn="Resort"
+                            name="type"
+                            id="Chauffeur"
+                            isTrue={HotelType}
+                          />
+                          <Radio
+                            rBtn="Bungalow"
+                            name="type"
+                            id="Bungalow"
+                            isTrue={HotelType}
+                          />
+                          <Radio
+                            rBtn="Inns"
+                            name="type"
+                            id="Inns"
+                            isTrue={HotelType}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -250,7 +303,7 @@ export default function HotelReg() {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex justify-end mb-6">
                   <div>
                     <Button3 btnName="Register" Click3={submit} />
                   </div>
