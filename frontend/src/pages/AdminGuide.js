@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import Button1 from "../component/Button1";
 import SearchBar from "../component/SearchBar";
-import Sidebar from "../component/Sidebar";
 
 export default function Admin() {
   let [newGuide, setNewGuide] = useState({});
@@ -103,10 +102,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="flex justify-center">
-      {/* Sidebar  */}
-      <Sidebar />
-
+    <div className="flex justify-center w-full">
       <div className="flex flex-col gap-10">
         <div className="text-center">
           <span className="text-xl">Guide Details</span>

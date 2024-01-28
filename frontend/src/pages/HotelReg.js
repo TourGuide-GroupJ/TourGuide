@@ -13,11 +13,8 @@ export default function HotelReg() {
 
   //Hotel types
   const [types, setTypes] = useState();
-  // const HotelType = (Event) => {
-  //   setTypes(Event.target.id);
-  //   //console.log(types);
-  // };
 
+  //Hotel classes
   const [classType, setClassType] = useState();
   const HotelType = (Event) => {
     setTypes(Event.target.id);

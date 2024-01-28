@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <div>
@@ -14,20 +16,20 @@ const Sidebar = () => {
           </span>
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/admin/adminGuide"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <span className="flex-1 ms-3 whitespace-nowrap">Guide</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/admin/adminHotel"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <span className="flex-1 ms-3 whitespace-nowrap">Hotel</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a
