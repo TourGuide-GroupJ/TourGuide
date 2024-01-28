@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 //const bodyParser = require("body-parser");
 
 //call functions in the packages
@@ -27,9 +27,9 @@ try {
 //app.use(bodyParser.json());
 
 //listen to a port
-const PORT = process.env.PORT
-const DB_URI = process.env.DB_URI
-  
+const PORT = process.env.PORT;
+const DB_URI = process.env.DB_URI;
+
 mongoose
   .connect(DB_URI)
   .then(() => {
