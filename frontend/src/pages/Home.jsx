@@ -75,7 +75,7 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link to="/event">
+            <Link to="/heritage">
               <div>
                 <Event
                   eventName="Heritage"
@@ -94,27 +94,35 @@ const Home = () => {
               </div>
             </Link>
 
-            <div>
-              <Event
-                eventName="Adventure"
-                eventImg={Kithulgala}
-                eventDescription="Seek an adrenaline rush amidst nature's beauty with white-water rafting in Kitulgala. Navigate the thrilling rapids of the Kelani River as you enjoy an exhilarating adventure. It's a perfect escapade for adventure enthusiasts and nature lovers alike."
-              />
-            </div>
-            <div>
-              <Event
-                eventName="Wild"
-                eventImg={Wild}
-                eventDescription="Get ready for a wild adventure at Yala National Park, home to diverse wildlife, including leopards, elephants, and a plethora of bird species. The thrill of spotting these majestic creatures in their natural habitat is an experience you'll treasure forever."
-              />
-            </div>
-            <div>
-              <Event
-                eventName="Event"
-                eventImg={StreetFood}
-                eventDescription="Immerse yourself in the world of words at the Galle Literary Festival. This annual event in the historic city of Galle brings together acclaimed authors, poets, and literary enthusiasts from around the world. Engage in discussions, book readings, and cultural exchanges in a charming colonial setting."
-              />
-            </div>
+            <Link to="/adventure">
+              <div>
+                <Event
+                  eventName="Adventure"
+                  eventImg={Kithulgala}
+                  eventDescription="Seek an adrenaline rush amidst nature's beauty with white-water rafting in Kitulgala. Navigate the thrilling rapids of the Kelani River as you enjoy an exhilarating adventure. It's a perfect escapade for adventure enthusiasts and nature lovers alike."
+                />
+              </div>
+            </Link>
+
+            <Link to="/wild">
+              <div>
+                <Event
+                  eventName="Wild"
+                  eventImg={Wild}
+                  eventDescription="Get ready for a wild adventure at Yala National Park, home to diverse wildlife, including leopards, elephants, and a plethora of bird species. The thrill of spotting these majestic creatures in their natural habitat is an experience you'll treasure forever."
+                />
+              </div>
+            </Link>
+
+            <Link to="/event">
+              <div>
+                <Event
+                  eventName="Event"
+                  eventImg={StreetFood}
+                  eventDescription="Immerse yourself in the world of words at the Galle Literary Festival. This annual event in the historic city of Galle brings together acclaimed authors, poets, and literary enthusiasts from around the world. Engage in discussions, book readings, and cultural exchanges in a charming colonial setting."
+                />
+              </div>
+            </Link>
           </div>
         </div>
 
@@ -130,9 +138,9 @@ const Home = () => {
               <Division1 image={ThingsToDo} text="Things to do and see" />
             </div>
             <Link to="/Guides">
-            <div>
-              <Division1 image={Guide} text="Find your tour guide" />
-            </div>
+              <div>
+                <Division1 image={Guide} text="Find your tour guide" />
+              </div>
             </Link>
             <Link to="/accommodation">
               <div>
@@ -152,9 +160,11 @@ const Home = () => {
                 text="Time scheduling & budget calculation"
               />
             </div>
-            <div>
-              <Division1 image={Rent} text="Rent hotels" />
-            </div>
+            <Link to="/rentItems">
+              <div>
+                <Division1 image={Rent} text="Rent Vehicles and Equipments" />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
