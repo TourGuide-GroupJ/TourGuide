@@ -2,12 +2,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const dotenv = require("dotenv")
 //const bodyParser = require("body-parser");
 
 //call functions in the packages
 const app = express();
 app.use(cors());
 app.use(express.json());
+dotenv.config();
 //app.use(express.urlencoded({extended:true}));
 
 try {
@@ -15,7 +17,7 @@ try {
   const attractionRoutes = require("./routes/attractionRoutes.js");
 
   app.use(guideRoutes);
-  //app.use(attractionRoutes);
+  app.use(attractionRoutes);
 
   console.log("Route is ok");
 } catch (error) {
@@ -25,12 +27,11 @@ try {
 //app.use(bodyParser.json());
 
 //listen to a port
-const PORT = 4000;
-const GUIDE_URL =
-  "mongodb+srv://Admin:Admin123@guidedata.k6o74kz.mongodb.net/?retryWrites=true&w=majority";
-
+const PORT = process.env.PORT
+const DB_URI = process.env.DB_URI
+  
 mongoose
-  .connect(GUIDE_URL)
+  .connect(DB_URI)
   .then(() => {
     console.log("Success");
   })

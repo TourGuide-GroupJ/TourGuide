@@ -22,31 +22,52 @@ const Festival = () => {
       </div>
       <div>
         <div className="mt-5 ml-[150px] max-w-[1000px] mx-auto">
-          <h2 className=" font-semibold text-2xl">Up Coming</h2>
+          <h2 className="text-2xl font-semibold ">Up Coming</h2>
         </div>
 
         <div className="flex justify-center">
           <div className=" mt-5 max-w-[1200px] mx-auto grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-x-20 gap-y-20">
             <div>
-              <Division name="Vesak" img={Vesak} />
+              <Division
+                name="Vesak"
+                img={Vesak}
+                description="Celebrate enlightenment and joy at the mesmerizing Vesak Festival, an exuberant Buddhist celebration honoring the birth, enlightenment, and passing of Buddha. Join us for a luminous cultural experience!"
+              />
             </div>
             <div>
               <Division
                 name="Sinhala and Tamil New Year"
                 img={SinhalaAndTamilNewYear}
+                description="Experience the vibrant cultural celebration of Sinhala and Tamil New Year in Sri Lanka. Immerse yourself in traditional rituals, festive foods, and joyous gatherings, marking a unique cultural spectacle."
               />
             </div>
             <div>
-              <Division name="Poson" img={Poson} />
+              <Division
+                name="Poson"
+                img={Poson}
+                description="Discover the sacred allure of Poson, Sri Lanka's spiritual haven. Immerse in the cultural tapestry of this ancient city, adorned with historic temples and vibrant festivities, embracing serenity and tradition."
+              />
             </div>
             <div>
-              <Division name="Nallur Festival" img={NallurFestival} />
+              <Division
+                name="Nallur Festival"
+                img={NallurFestival}
+                description="Experience the vibrant Nallur Festival, an annual celebration in Jaffna, Sri Lanka. Immerse yourself in colorful processions, traditional music, and the spiritual energy of this cultural extravaganza."
+              />
             </div>
             <div>
-              <Division name="Deepavali" img={Deepavali} />
+              <Division
+                name="Deepavali"
+                img={Deepavali}
+                description="Experience the vibrant festival of Deepavali, illuminating the city with a kaleidoscope of lights, intricate rangoli designs, and joyous celebrations. Immerse in the cultural richness of this dazzling festival!"
+              />
             </div>
             <div>
-              <Division name="Thai Pongal" img={ThaiPongal} />
+              <Division
+                name="Thai Pongal"
+                img={ThaiPongal}
+                description="Experience the vibrant celebration of Thai Pongal, a harvest festival in Tamil culture. Join in the joyous festivities, traditional rituals, and delectable feasts that mark this auspicious occasion."
+              />
             </div>
           </div>
         </div>
