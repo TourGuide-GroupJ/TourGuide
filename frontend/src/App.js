@@ -2,20 +2,33 @@ import "./App.css";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
+
+//First 6 components
 import Attractions from "./pages/Attractions";
-import Accomadation from "./pages/Accommodation";
+import Heritage from "./pages/Heritage";
 import Festival from "./pages/Festival";
-import GuideReg from './pages/GuideReg';
-import Login from './pages/Login'; 
-import CreateAccount from './pages/CreateAccount';
-import Admin from './pages/Admin'; 
-import Guides from './pages/Guides';
+import Adventure from "./pages/Adventure";
+import Wild from "./pages/Wild";
+import Event from "./pages/Event";
+
+//Second 6 components
+import Accomadation from "./pages/Accommodation";
+import GuideReg from "./pages/GuideReg";
+import RentItems from "./pages/RentItems";
+
+import Login from "./pages/Login";
+import CreateAccount from "./pages/CreateAccount";
+import Admin from "./pages/Admin";
+import Guides from "./pages/Guides";
 import GuideProf from "./pages/GuideProf";
+import HotelReg from "./pages/HotelReg";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 // import { Hotel } from "@mui/icons-material";
 
 const router = createBrowserRouter([
+  //Navigation bar
   {
     path: "/",
     element: <Home />,
@@ -32,38 +45,68 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+
+  //First 6 components
   {
     path: "/attractions",
     element: <Attractions />,
+  },
+  {
+    path: "/heritage",
+    element: <Heritage />,
   },
   {
     path: "/festival",
     element: <Festival />,
   },
   {
+    path: "/adventure",
+    element: <Adventure />,
+  },
+  {
+    path: "/wild",
+    element: <Wild />,
+  },
+  {
+    path: "/event",
+    element: <Event />,
+  },
+
+  //Second 6 components
+  {
     path: "/accommodation",
     element: <Accomadation />,
   },
   {
-    path:"/CreateAccount",
-    element: <CreateAccount/>,
+    path: "/Guides",
+    element: <Guides />,
   },
   {
-    path:"/GuideReg",
-    element:<GuideReg/>,
+    path: "/rentItems",
+    element: <RentItems />,
+  },
+
+  //Other pages
+  {
+    path: "/CreateAccount",
+    element: <CreateAccount />,
   },
   {
-    path:"/Admin",
-    element:<Admin/>,
+    path: "/GuideReg",
+    element: <GuideReg />,
   },
   {
-    path:"/Guides",
-    element:<Guides/>,
+    path: "/HotelReg",
+    element: <HotelReg />,
   },
   {
-    path:"/GuideProf",
-    element:<GuideProf/>,
-  }
+    path: "/Admin",
+    element: <Admin />,
+  },
+  {
+    path: "/GuideProf",
+    element: <GuideProf />,
+  },
 ]);
 
 function App() {

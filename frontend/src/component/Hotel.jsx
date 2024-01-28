@@ -23,16 +23,16 @@ const Hotel = () => {
   };
   return (
     <div className="max-w-[1640px] m-auto px-4 py-12">
-      <h1 className=" text-cyan-800 font-bold text-4xl text-center">
-        Top Rated Hotels
+      <h1 className="text-4xl font-semibold text-center text-cyan-800">
+        Recommended Hotels
       </h1>
 
       {/* Filter Row */}
-      <div className="flex flex-col lg:flex-row justify-between">
+      <div className="flex flex-col justify-between lg:flex-row">
         {/* Fliter Type */}
         <div>
-          <p className="font-bold text-gray-700 text-xl">Filter Type</p>
-          <div className="flex justfiy-between flex-wrap gap-4">
+          <p className="text-xl font-bold text-gray-700">Filter Type</p>
+          <div className="flex flex-wrap gap-4 justfiy-between">
             <button
               onClick={() => setHotels(data)}
               className="rounded-[5px] p-1 text-cyan-800 hover:bg-cyan-800 hover:text-white font-semibold"
@@ -62,42 +62,42 @@ const Hotel = () => {
 
         {/* Filter Package */}
         <div>
-          <p className="font-bold text-gray-700 text-xl">Filter Package</p>
+          <p className="text-xl font-bold text-gray-700">Filter Package</p>
           <div className="flex justify-between max-w-[390px] w-full gap-4">
             <button
-              onClick={() => filterPackage("$")}
+              onClick={() => filterPackage("50$")}
               className="rounded-[5px] p-1 text-cyan-800 hover:bg-cyan-800 hover:text-white font-semibold"
             >
-              $
+              50$
             </button>
             <button
-              onClick={() => filterPackage("$$")}
+              onClick={() => filterPackage("100$")}
               className="rounded-[5px] p-1 text-cyan-800 hover:bg-cyan-800 hover:text-white font-semibold"
             >
-              $$
+              100$
             </button>
             <button
-              onClick={() => filterPackage("$$$")}
+              onClick={() => filterPackage("200$")}
               className="rounded-[5px] p-1 text-cyan-800 hover:bg-cyan-800 hover:text-white font-semibold"
             >
-              $$$
+              200$
             </button>
             <button
-              onClick={() => filterPackage("$$$$")}
+              onClick={() => filterPackage("500$")}
               className="rounded-[5px] p-1 text-cyan-800 hover:bg-cyan-800 hover:text-white font-semibold"
             >
-              $$$$
+              500$
             </button>
           </div>
         </div>
       </div>
 
       {/* Display Hotels */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+      <div className="grid gap-6 pt-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {hotels.map((hotel, index) => (
           <div
             key={index}
-            className="border shadow-lg rounded-lg hover:scale-105 duration-300"
+            className="duration-300 border rounded-lg shadow-lg hover:scale-105"
           >
             <img
               src={hotel.image}
