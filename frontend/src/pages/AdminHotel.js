@@ -4,7 +4,7 @@ import Button1 from "../component/Button1";
 import SearchBar from "../component/SearchBar";
 
 export default function AdminHotel() {
-  let [newGuide, setNewGuide] = useState({});
+  const [newGuide, setNewGuide] = useState({});
   const [gId, setId] = useState("");
   let [guideName, setGuideName] = useState();
   let [accept, setAccept] = useState(false);
