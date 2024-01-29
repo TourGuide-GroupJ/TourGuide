@@ -1,4 +1,5 @@
 const Guide = require('../models/Guide.model'); // Assuming the Guide model is defined in 'models/Guide.js'
+const Attraction = require('../models/Attraction.model');
 const otplib = require('otplib'); // Assuming otplib is installed
 const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
 
@@ -86,3 +87,30 @@ exports.deleteGuideById = (req, res) => {
       });
   };
   
+//******************************************************************* */
+
+exports.addAttraction = async(req, res) => {
+    const { name, description, location } = req.body;
+    const photoPath = req.file.path;
+
+    // Create a new attraction instance
+    const newAttraction = new Attraction({
+        name,
+        description,
+        location,
+        photoPath,
+    });
+
+    try {
+        // Save the attraction to the database
+        const savedAttraction = await newAttraction.save();
+        console.log('Attraction added:', savedAttraction);
+
+        res.json({ success: true, message: 'Attraction added successfully' });
+    } catch (error) {
+        console.error('Error adding attraction:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+
+
