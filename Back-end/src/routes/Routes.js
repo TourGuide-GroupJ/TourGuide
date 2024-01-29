@@ -1,6 +1,6 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-const Guide = require("../models/guideModel.js");
+const Guide = require("../models/Guide.model.js");
 const { google } = require("googleapis");
 const otplib = require("otplib");
 

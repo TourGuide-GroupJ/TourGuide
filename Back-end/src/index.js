@@ -13,11 +13,19 @@ dotenv.config();
 //app.use(express.urlencoded({extended:true}));
 
 try {
-  const guideRoutes = require("./routes/Routes.js");
-  const attractionRoutes = require("./routes/attractionRoutes.js");
+  // const guideRoutes = require("./routes/Routes.js");
+  // const attractionRoutes = require("./routes/attractionRoutes.js");
+  // app.use(guideRoutes);
+  // app.use(attractionRoutes);
 
+  const guideRoutes = require("./routes/Guide.routes.js");
+  const adminRoutes = require("./routes/Admin.routes.js");
+  const userRoutes = require("./routes/User.routes.js")
   app.use(guideRoutes);
-  app.use(attractionRoutes);
+  app.use(adminRoutes);
+  app.use(userRoutes);
+
+
 
   console.log("Route is ok");
 } catch (error) {
