@@ -1,17 +1,19 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 
 //************************************ Mail setting
 const oAuth2Client = new google.auth.OAuth2(
-  "888621362252-h0acbi8hkuio4c0hi887ttuob83upto0.apps.googleusercontent.com",
-  "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",
+  process.env.ClientId,
+  process.env.ClientSecret,
   "https://developers.google.com/oauthplayground"
 );
 
 oAuth2Client.setCredentials({
-  refresh_token:
-    "1//04FjCndyZqH82CgYIARAAGAQSNwF-L9IreuinSVP2oDv7Ycsjf6bwnpobRFg1EcbI2jlaHLjGYhZOBmMAn5IlEjahQttBoQo0eLU",
+  refresh_token: process.env.Refresh_Token,
 });
 
 const transporter = nodemailer.createTransport({
@@ -19,11 +21,9 @@ const transporter = nodemailer.createTransport({
   auth: {
     type: "OAuth2",
     user: "shankumarax1@gmail.com",
-    clientId:
-      "888621362252-h0acbi8hkuio4c0hi887ttuob83upto0.apps.googleusercontent.com",
-    clientSecret: "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",
-    refreshToken:
-      "1//04FjCndyZqH82CgYIARAAGAQSNwF-L9IreuinSVP2oDv7Ycsjf6bwnpobRFg1EcbI2jlaHLjGYhZOBmMAn5IlEjahQttBoQo0eLU",
+    clientId: process.env.ClientId,
+    clientSecret: process.env.ClientSecret,
+    refreshToken: process.env.Refresh_Token,
     accessToken: oAuth2Client.getAccessToken(),
   },
 });
