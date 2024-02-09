@@ -144,8 +144,8 @@ export default function HotelReg() {
   };
 
   return (
-    <div className="flex justify-center bg-[#e5e7eb] h-full">
-      <div className="flex flex-col w-full gap-2 p-5">
+    <div className="flex justify-center bg-[#e5e7eb] h-screen">
+      <div className="flex flex-col w-full gap-5 p-5">
         <div>
           <p className="text-3xl font-semibold text-center">
             Hotel Registration
