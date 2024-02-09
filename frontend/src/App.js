@@ -27,6 +27,14 @@ import GuideProf from "./pages/GuideProf";
 import HotelReg from "./pages/HotelReg";
 import AdminHotel from "./pages/AdminHotel";
 
+//Adventure routes
+import AeroplaneExperience from "./pages/AeroplaneExperience";
+import KithulgalaRafting from "./pages/KithulgalaRafting";
+import Kirigalpoththa from "./pages/Kirigalpoththa";
+import BlueWhale from "./pages/BlueWhale";
+import Dolukanda from "./pages/Dolukanda";
+import YalaSafari from "./pages/YalaSafari";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import { Hotel } from "@mui/icons-material";
@@ -106,6 +114,30 @@ const router = createBrowserRouter([
   {
     path: "/GuideProf",
     element: <GuideProf />,
+  },
+  {
+    path: "/aeroplane",
+    element: <AeroplaneExperience />,
+  },
+  {
+    path: "/kithulgala",
+    element: <KithulgalaRafting/>,
+  },
+  {
+    path: "/kirigalpoththa",
+    element: <Kirigalpoththa />,
+  },
+  {
+    path: "/blueWhale",
+    element: <BlueWhale />,
+  },
+  {
+    path: "/dolukanda",
+    element: <Dolukanda />,
+  },
+  {
+    path: "/yala",
+    element: <YalaSafari/>,
   },
 
   //Layout routs
