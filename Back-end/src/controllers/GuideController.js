@@ -63,6 +63,7 @@ exports.getGuideProfile = (req, res) => {
     });
 };
 
+//*********************************************************Not use */
 exports.updateAllGuide = (req, res) => {
   Guide.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => {
@@ -78,6 +79,7 @@ exports.updateAllGuide = (req, res) => {
       });
     });
 };
+//********************************************************** */
 
 exports.updateProfileGuide = async (req, res) => {
   try {
@@ -160,6 +162,7 @@ exports.otpAlertUpdate = async (req, res) => {
   console.log(profSecret);
   const otpValidation = otplib.authenticator.check(enteredOtp, profSecret);
   console.log(otpValidation);
+  
 
   if (otpValidation) {
     Guide.findByIdAndUpdate(profId, {
