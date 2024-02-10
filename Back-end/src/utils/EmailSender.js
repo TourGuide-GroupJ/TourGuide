@@ -56,3 +56,5 @@ exports.sendDynamicEmail = async (recipient, message, id) => {
     console.error("Error sending email:", error);
   }
 };
+
+
