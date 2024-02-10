@@ -1,7 +1,7 @@
-const Guide = require('../models/Guide.model'); // Assuming the Guide model is defined in 'models/Guide.js'
+const Guide = require('../models/Guide.model'); 
 const Attraction = require('../models/Attraction.model');
-const otplib = require('otplib'); // Assuming otplib is installed
-const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
+//const otplib = require('otplib'); // Assuming otplib is installed
+//const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
 
 exports.searchGuide = (req, res) => {
   Guide.findById(req.params.id)

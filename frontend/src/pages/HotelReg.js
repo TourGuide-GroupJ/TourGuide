@@ -8,7 +8,7 @@ export default function HotelReg() {
   const [HotelData, setHotelData] = useState();
   const func = (Event) => {
     setHotelData({ ...HotelData, [Event.target.name]: Event.target.value });
-    //console.log(HotelData);
+    console.log(HotelData);
   };
 
   //Hotel types
@@ -21,6 +21,8 @@ export default function HotelReg() {
     if (Event.target.id === "Hotel") {
       setClassType(undefined);
     }
+    console.log(HotelType);
+    console.log(classType);
   };
 
   //show password check box
