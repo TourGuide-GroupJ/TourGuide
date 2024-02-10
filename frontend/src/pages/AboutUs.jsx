@@ -13,7 +13,7 @@ const AboutUs = () => {
         </div>
         <div className="p-20 bg-white w-[1000px] H-[500px]">
         <span className="text-4xl font-bold">ABOUT US</span>
-        <div className="mt-5">
+        <div className="mt-5 ">
           <p>In 2023, we decided to create travel guide web application.The purpose of this web application is to provide
 a comprehensive and user-friendly web application for tourists visiting Sri Lanka as well as local tourists,
 offering detailed information, resources, and tools to enhance their travel experience.</p>

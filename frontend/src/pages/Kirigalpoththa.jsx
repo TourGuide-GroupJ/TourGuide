@@ -8,11 +8,11 @@ function Kirigalpoththa() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-3 mt-[100px]">
-        <div className="col-span-3 lg:col-span-1">
-          <img className="object-cover w-full" src={kirigalpoththa1} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-[100px]">
+        <div className="col-span-1 lg:col-span-1">
+          <img className="object-cover w-full" src={kirigalpoththa1} alt="kirigalpotha1" />
         </div>
-        <div className="p-10 bg-gray-200 w-[1000px] H-[500px] lg:col-span-2">
+        <div className="p-5 lg:p-10 bg-white lg:w-[1000px] lg:h-[500px] col-span-1 lg:col-span-2">
           <span className="text-4xl font-semibold">
             Kirigalpoththa Mountain Peak – For an exciting trek
           </span>
@@ -34,12 +34,13 @@ function Kirigalpoththa() {
             beautiful landscapes, including grasslands, montane forests, and unique flora and fauna. 
           </p>
 
-          <div className="mt-10"></div>
+          <div className="mt-5 "></div>
           <img
-            className="object-cover "
+            className="object-cover  "
             src={kirigalpoththa2}
             width="600"
             height="400"
+            alt="kirigalpoththa2"
           />
         </div>
       </div>

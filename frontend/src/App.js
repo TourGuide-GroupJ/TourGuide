@@ -37,6 +37,7 @@ import Dolukanda from "./pages/Dolukanda";
 import YalaSafari from "./pages/YalaSafari";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AdminResponse from "./pages/AdminResponse";
 
 // import { Hotel } from "@mui/icons-material";
 
@@ -157,6 +158,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/adminHotel",
         element: <AdminHotel />,
+      },
+      {
+        path: "/admin/adminResponse",
+        element: <AdminResponse />,
       },
     ],
   },
