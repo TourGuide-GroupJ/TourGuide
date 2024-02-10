@@ -36,7 +36,7 @@ import BlueWhale from "./pages/BlueWhale";
 import Dolukanda from "./pages/Dolukanda";
 import YalaSafari from "./pages/YalaSafari";
 
-import UserSignup from "./pages/UserSignup";
+import UserSignup from "../pages/UserSignup";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
