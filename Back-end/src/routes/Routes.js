@@ -1,6 +1,6 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-const Guide = require("../models/guideModel.js");
+const Guide = require("../models/Guide.model.js");
 const { google } = require("googleapis");
 const otplib = require("otplib");
 
@@ -15,7 +15,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({
   refresh_token:
-  "1//04NtrTDdw3KbBCgYIARAAGAQSNwF-L9IrOc3bVH3RUJ5JSOQsqMmGH54V-yjOtbIGa0qy5KaYzmvbArrLt_llYHXewR2gLARYCi0",
+    "1//04FjCndyZqH82CgYIARAAGAQSNwF-L9IreuinSVP2oDv7Ycsjf6bwnpobRFg1EcbI2jlaHLjGYhZOBmMAn5IlEjahQttBoQo0eLU",
 });
 
 const transporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
       "888621362252-h0acbi8hkuio4c0hi887ttuob83upto0.apps.googleusercontent.com",
     clientSecret: "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",
     refreshToken:
-    "1//04NtrTDdw3KbBCgYIARAAGAQSNwF-L9IrOc3bVH3RUJ5JSOQsqMmGH54V-yjOtbIGa0qy5KaYzmvbArrLt_llYHXewR2gLARYCi0",
+      "1//04FjCndyZqH82CgYIARAAGAQSNwF-L9IreuinSVP2oDv7Ycsjf6bwnpobRFg1EcbI2jlaHLjGYhZOBmMAn5IlEjahQttBoQo0eLU",
     accessToken: oAuth2Client.getAccessToken(),
   },
 });
@@ -317,7 +317,7 @@ router.put("/guide/updateprofilespecial/:id", async (req, res) => {
   }
 });
 
-//**********************************************************************Never change 
+//**********************************************************************Never change
 router.post("/guide/otpalertupdate", async (req, res) => {
   console.log("otp checking");
   const enteredOtp = req.body.otp;
@@ -325,8 +325,6 @@ router.post("/guide/otpalertupdate", async (req, res) => {
   console.log(profSecret);
   const otpValidation = otplib.authenticator.check(enteredOtp, profSecret);
   console.log(otpValidation);
-
-
 
   if (otpValidation) {
     Guide.findByIdAndUpdate(profId, {

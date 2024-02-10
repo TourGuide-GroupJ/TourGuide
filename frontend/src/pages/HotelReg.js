@@ -8,7 +8,7 @@ export default function HotelReg() {
   const [HotelData, setHotelData] = useState();
   const func = (Event) => {
     setHotelData({ ...HotelData, [Event.target.name]: Event.target.value });
-    //console.log(HotelData);
+    console.log(HotelData);
   };
 
   //Hotel types
@@ -21,6 +21,8 @@ export default function HotelReg() {
     if (Event.target.id === "Hotel") {
       setClassType(undefined);
     }
+    console.log(HotelType);
+    console.log(classType);
   };
 
   //show password check box
@@ -59,7 +61,7 @@ export default function HotelReg() {
       }
       try {
         await axios
-          .get("http://localhost:4000/guide/AccommodationReg")
+          .get("http://localhost:4000/hotel/hotelReg")
           .then((res) => {
             try {
               const previousMail = res.data.map((item) => {
@@ -104,23 +106,23 @@ export default function HotelReg() {
 
   const signup = async () => {
     try {
-      var HotelName =
+      var hotelName =
         HotelData.hName.charAt(0).toUpperCase() + HotelData.hName.slice(1);
 
-      var HotelLicenseNumber = HotelData.hotelID;
-      var HotelType = types;
-      var ContactNumber = HotelData.contact;
-      var Email = HotelData.mail;
-      var Password = HotelData.pswd;
+      var hotelLicenseNumber = HotelData.hotelID; //data catch from user and store in variables
+      var hotelType = types;
+      var contactNumber = HotelData.contact;
+      var email = HotelData.mail;
+      var password = HotelData.pswd;
       console.log("ok");
       await axios
-        .post("http://localhost:4000/accommodation/save", {
-          HotelName,
-          HotelLicenseNumber,
-          HotelType,
-          ContactNumber,
-          Email,
-          Password,
+        .post("http://localhost:4000/hotel/save", {
+          hotelName,
+          hotelLicenseNumber,
+          hotelType,
+          contactNumber,
+          email,
+          password,
         })
         .then((res) => {
           setNewGuide((newGuide = res.data.Guide));
@@ -144,8 +146,8 @@ export default function HotelReg() {
   };
 
   return (
-    <div className="flex justify-center bg-[#e5e7eb] h-full">
-      <div className="flex flex-col w-full gap-2 p-5">
+    <div className="flex justify-center bg-[#e5e7eb] h-screen">
+      <div className="flex flex-col w-full gap-5 p-5">
         <div>
           <p className="text-3xl font-semibold text-center">
             Hotel Registration
@@ -156,7 +158,7 @@ export default function HotelReg() {
             <div className="flex justify-center lg:w-[500px]  bg-white rounded-xl">
               <div className="flex flex-col justify-center gap-3 p-2 ">
                 <div className="flex flex-col gap-2">
-                  <div className="mt-5 font-semibold">First name*</div>
+                  <div className="mt-5 font-semibold">Hotel Name*</div>
                   <div>
                     <Text1
                       plcHolder="Enter Hotel Name"

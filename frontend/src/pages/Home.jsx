@@ -29,12 +29,14 @@ const Home = () => {
       <div className="relative ">
         {/* <img src={Beach} /> */}
         <Slider />
-        <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center hotels-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
-          Welcome to Sri Lanka
-        </h1>
-        <div className=" absolute w-full flex justify-center top-[50%]">
-          <div className=" w-min">
-            <SearchBar />
+        <div>
+          <h1 className=" absolute lg:text-6xl md:text-5xl sm:text-3xl font-bold text-center hotels-center uppercase left-0 right-0 top-[40%] m-auto tracking-wide text-white">
+            Welcome to Sri Lanka
+          </h1>
+          <div className=" absolute w-full flex justify-center top-[52%] ">
+            <div className=" w-min">
+              <SearchBar className="lg:w-10 mg:w-5" />
+            </div>
           </div>
         </div>
       </div>
@@ -151,9 +153,12 @@ const Home = () => {
               </div>
             </Link>
 
-            <div>
-              <Division1 image={Camping} text="Camping site" />
-            </div>
+            <Link to="/hotel">
+              <div>
+                <Division1 image={Camping} text="Camping site" />
+              </div>
+            </Link>
+
             <div>
               <Division1
                 image={Plan}

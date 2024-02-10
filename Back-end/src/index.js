@@ -2,7 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
+
 //const bodyParser = require("body-parser");
 
 //call functions in the packages
@@ -13,11 +14,19 @@ dotenv.config();
 //app.use(express.urlencoded({extended:true}));
 
 try {
-  const guideRoutes = require("./routes/Routes.js");
-  const attractionRoutes = require("./routes/attractionRoutes.js");
+  // const guideRoutes = require("./routes/Routes.js");
+  // const attractionRoutes = require("./routes/attractionRoutes.js");
+  // app.use(guideRoutes);
+  // app.use(attractionRoutes);
 
+  const guideRoutes = require("./routes/Guide.routes.js");
+  const hotelRoutes = require("./routes/Hotel.routes.js");
+  const adminRoutes = require("./routes/Admin.routes.js");
+  const userRoutes = require("./routes/User.routes.js");
   app.use(guideRoutes);
-  app.use(attractionRoutes);
+  app.use(hotelRoutes);
+  app.use(adminRoutes);
+  app.use(userRoutes);
 
   console.log("Route is ok");
 } catch (error) {
@@ -27,9 +36,9 @@ try {
 //app.use(bodyParser.json());
 
 //listen to a port
-const PORT = process.env.PORT
-const DB_URI = process.env.DB_URI
-  
+const PORT = process.env.PORT;
+const DB_URI = process.env.DB_URI;
+
 mongoose
   .connect(DB_URI)
   .then(() => {

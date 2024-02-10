@@ -18,6 +18,7 @@ import Event from "./pages/Event";
 import Accomadation from "./pages/Accommodation";
 import GuideReg from "./pages/GuideReg";
 import RentItems from "./pages/RentItems";
+import Hotel from "./pages/Hotel";
 
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -26,6 +27,14 @@ import Guides from "./pages/Guides";
 import GuideProf from "./pages/GuideProf";
 import HotelReg from "./pages/HotelReg";
 import AdminHotel from "./pages/AdminHotel";
+
+//Adventure routes
+import AeroplaneExperience from "./pages/AeroplaneExperience";
+import KithulgalaRafting from "./pages/KithulgalaRafting";
+import Kirigalpoththa from "./pages/Kirigalpoththa";
+import BlueWhale from "./pages/BlueWhale";
+import Dolukanda from "./pages/Dolukanda";
+import YalaSafari from "./pages/YalaSafari";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -89,6 +98,10 @@ const router = createBrowserRouter([
     path: "/rentItems",
     element: <RentItems />,
   },
+  {
+    path: "/hotel",
+    element: <Hotel />,
+  },
 
   //Other pages
   {
@@ -106,6 +119,30 @@ const router = createBrowserRouter([
   {
     path: "/GuideProf",
     element: <GuideProf />,
+  },
+  {
+    path: "/aeroplane",
+    element: <AeroplaneExperience />,
+  },
+  {
+    path: "/kithulgala",
+    element: <KithulgalaRafting/>,
+  },
+  {
+    path: "/kirigalpoththa",
+    element: <Kirigalpoththa />,
+  },
+  {
+    path: "/blueWhale",
+    element: <BlueWhale />,
+  },
+  {
+    path: "/dolukanda",
+    element: <Dolukanda />,
+  },
+  {
+    path: "/yala",
+    element: <YalaSafari/>,
   },
 
   //Layout routs
