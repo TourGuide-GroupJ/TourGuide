@@ -153,9 +153,12 @@ const Home = () => {
               </div>
             </Link>
 
-            <div>
-              <Division1 image={Camping} text="Camping site" />
-            </div>
+            <Link to="/hotel">
+              <div>
+                <Division1 image={Camping} text="Camping site" />
+              </div>
+            </Link>
+
             <div>
               <Division1
                 image={Plan}

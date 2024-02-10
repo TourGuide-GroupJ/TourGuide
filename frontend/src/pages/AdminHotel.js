@@ -4,11 +4,11 @@ import Button1 from "../component/Button1";
 import SearchBar from "../component/SearchBar";
 
 export default function AdminHotel() {
-  const [newGuide, setNewGuide] = useState({});
+  const [newHotel, setNewHotel] = useState({});
   const [gId, setId] = useState("");
-  let [guideName, setGuideName] = useState();
-  let [accept, setAccept] = useState(false);
-  let [block, setBlock] = useState(false);
+  const [HotelName, setHotelName] = useState();
+  const [accept, setAccept] = useState(false);
+  const [block, setBlock] = useState(false);
 
   const DBID = (Event) => {
     setId(Event.target.value);
@@ -18,13 +18,13 @@ export default function AdminHotel() {
     Event.preventDefault();
     try {
       await axios
-        .get(`http://localhost:4000/guide/search/${gId}`)
+        .get(`http://localhost:4000/Hotel/search/${gId}`)
         .then((res) => {
-          setNewGuide((newGuide = res.data.Guide));
-          setGuideName(newGuide.FirstName + " " + newGuide.LastName);
-          setAccept(newGuide.IsAccepted);
-          setBlock(newGuide.IsBlocked);
-          console.log(newGuide);
+          setNewHotel((newHotel = res.data.Hotel));
+          setHotelName(newHotel.FirstName + " " + newHotel.LastName);
+          setAccept(newHotel.IsAccepted);
+          setBlock(newHotel.IsBlocked);
+          console.log(newHotel);
         })
         .catch((error) => {
           alert(error);
@@ -38,7 +38,7 @@ export default function AdminHotel() {
   async function Accept() {
     try {
       await axios
-        .patch(`http://localhost:4000/guide/AdminHotel/accept/${gId}`)
+        .patch(`http://localhost:4000/Hotel/AdminHotel/accept/${gId}`)
         .then(() => {
           console.log("Accepted");
         })
@@ -55,7 +55,7 @@ export default function AdminHotel() {
     if (block) {
       try {
         await axios
-          .patch(`http://localhost:4000/guide/AdminHotel/unblock/${gId}`)
+          .patch(`http://localhost:4000/Hotel/AdminHotel/unblock/${gId}`)
           .then(() => {
             console.log("Unblocked");
             setBlock(false);
@@ -70,7 +70,7 @@ export default function AdminHotel() {
     } else {
       try {
         await axios
-          .patch(`http://localhost:4000/guide/AdminHotel/block/${gId}`)
+          .patch(`http://localhost:4000/Hotel/AdminHotel/block/${gId}`)
           .then(() => {
             console.log("Blocked");
             setBlock(true);
@@ -88,7 +88,7 @@ export default function AdminHotel() {
   async function Delete() {
     try {
       await axios
-        .delete(`http://localhost:4000/guide/delete/${gId}`)
+        .delete(`http://localhost:4000/Hotel/delete/${gId}`)
         .then(() => {
           console.log("Deleted");
         })
@@ -104,10 +104,10 @@ export default function AdminHotel() {
   return (
     <div className="flex justify-center w-full">
       <div className="flex flex-col gap-10">
-        <div className="text-center">
+        <div className="mt-5 text-center">
           <span className="text-xl">Hotel Details</span>
         </div>
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center ">
           <div className="w-[100px] h-[8px] my-div flex text-center">
             Data Base Id{" "}
           </div>
@@ -116,16 +116,16 @@ export default function AdminHotel() {
           </div>
         </div>
         <div>
-          <table className="p-5">
+          <table className="gap-5 p-10">
             <thead></thead>
             <tbody>
               <tr>
                 <td>
-                  <span>Tour Guide Name</span>
+                  <span>Tour Hotel Name</span>
                 </td>
                 <td>
-                  <span className="text-left">- </span>
-                  {guideName}
+                  <span className="text-left"> - </span>
+                  {HotelName}
                 </td>
               </tr>
               <tr>
@@ -133,8 +133,8 @@ export default function AdminHotel() {
                   <span>License Id</span>
                 </td>
                 <td>
-                  <span className="text-left">- </span>
-                  {newGuide && newGuide.GuideId_Number}
+                  <span className="text-left"> - </span>
+                  {newHotel && newHotel.HotelId_Number}
                 </td>
               </tr>
               <tr>
@@ -142,8 +142,8 @@ export default function AdminHotel() {
                   <span>Hotel Type</span>
                 </td>
                 <td>
-                  <span className="text-left">- </span>
-                  {newGuide && newGuide.GuideType}
+                  <span className="text-left"> - </span>
+                  {newHotel && newHotel.HotelType}
                 </td>
               </tr>
               <tr>
@@ -151,8 +151,8 @@ export default function AdminHotel() {
                   <span>Email</span>
                 </td>
                 <td>
-                  <span className="text-left">- </span>
-                  {newGuide && newGuide.Email}
+                  <span className="text-left"> - </span>
+                  {newHotel && newHotel.Email}
                 </td>
               </tr>
               <tr>
@@ -160,13 +160,13 @@ export default function AdminHotel() {
                   <span>Contact Number</span>
                 </td>
                 <td>
-                  <span className="text-left">- </span>
-                  {newGuide && newGuide.ContactNumber}
+                  <span className="text-left"> - </span>
+                  {newHotel && newHotel.ContactNumber}
                 </td>
               </tr>
             </tbody>
           </table>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between mt-5">
             <div>
               <Button1
                 btnName={accept ? "Accepted" : "Accept"}

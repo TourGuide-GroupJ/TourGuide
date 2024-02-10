@@ -20,13 +20,13 @@ try {
   // app.use(attractionRoutes);
 
   const guideRoutes = require("./routes/Guide.routes.js");
+  const hotelRoutes = require("./routes/Hotel.routes.js");
   const adminRoutes = require("./routes/Admin.routes.js");
-  const userRoutes = require("./routes/User.routes.js")
+  const userRoutes = require("./routes/User.routes.js");
   app.use(guideRoutes);
+  app.use(hotelRoutes);
   app.use(adminRoutes);
   app.use(userRoutes);
-
-
 
   console.log("Route is ok");
 } catch (error) {

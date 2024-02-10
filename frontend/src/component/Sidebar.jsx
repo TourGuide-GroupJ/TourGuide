@@ -11,7 +11,7 @@ const Sidebar = () => {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-800">
-          <span className="flex items-center p-2 text-gray-900 rounded-lg ms-3 dark:text-white">
+          <span className="flex items-center p-2 text-white rounded-lg ms-3">
             Dashboard
           </span>
           <ul className="space-y-2 font-medium">

@@ -18,6 +18,7 @@ import Event from "./pages/Event";
 import Accomadation from "./pages/Accommodation";
 import GuideReg from "./pages/GuideReg";
 import RentItems from "./pages/RentItems";
+import Hotel from "./pages/Hotel";
 
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
   {
     path: "/rentItems",
     element: <RentItems />,
+  },
+  {
+    path: "/hotel",
+    element: <Hotel />,
   },
 
   //Other pages
