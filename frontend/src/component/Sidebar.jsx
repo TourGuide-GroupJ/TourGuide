@@ -39,6 +39,14 @@ const Sidebar = () => {
                 <span className="flex-1 ms-3">Equipment</span>
               </a>
             </li>
+            <li>
+              <Link
+                to="/admin/adminResponse"
+                className="flex items-center p-2 mt-3.5 text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span className="flex-1 ms-3">Response</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>

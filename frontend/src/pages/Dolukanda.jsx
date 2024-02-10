@@ -8,11 +8,11 @@ function Dolukanda() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-3 mt-[100px]">
-        <div className="col-span-3 lg:col-span-1">
-          <img className="object-cover w-full" src={dolukanda1} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-[100px]">
+        <div className="col-span-1 lg:col-span-1">
+          <img className="object-cover w-full" src={dolukanda1} alt="dolukanda1" />
         </div>
-        <div className="p-10 bg-gray-200 w-[1000px] H-[500px] lg:col-span-2">
+        <div className="p-5 lg:p-10 bg-white lg:w-[1000px] lg:h-[500px] col-span-1 lg:col-span-2">
           <span className="text-4xl font-semibold">
           Dolukanda - hiking & camping mountain
           </span>
@@ -35,6 +35,7 @@ function Dolukanda() {
             src={dolukanda2}
             width="600"
             height="400"
+            alt="dolukanda2"
           />
         </div>
       </div>
