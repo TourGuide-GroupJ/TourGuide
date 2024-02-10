@@ -1,4 +1,5 @@
 import React from "react";
+import Rating from "./Rating";
 
 const HotelCom = (props) => {
   return (
@@ -13,6 +14,7 @@ const HotelCom = (props) => {
         <p>
           <span>{props.price}</span>
         </p>
+        <Rating />
       </div>
     </div>
   );

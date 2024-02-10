@@ -158,6 +158,7 @@ const router = createBrowserRouter([
         path: "/admin/adminHotel",
         element: <AdminHotel />,
       },
+      
     ],
   },
 ]);
