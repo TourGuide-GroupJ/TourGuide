@@ -9,6 +9,6 @@ router.get("/hotel", userController.getAcceptedHotels);
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
 
-router.post("/contactUs", userController.postResponse);
+router.post("/contactUs",userController.postResponse);
 
 module.exports = router;
