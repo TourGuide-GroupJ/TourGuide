@@ -144,7 +144,7 @@ const Home = () => {
                 <Division1 image={Guide} text="Find your tour guide" />
               </div>
             </Link>
-            <Link to="/accommodation">
+            <Link to="/hotel">
               <div>
                 <Division1
                   image={Accommodation}
@@ -153,7 +153,7 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link to="/hotel">
+            <Link to="">
               <div>
                 <Division1 image={Camping} text="Camping site" />
               </div>

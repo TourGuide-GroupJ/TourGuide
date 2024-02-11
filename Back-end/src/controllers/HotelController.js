@@ -8,19 +8,13 @@ exports.saveHotel = async (req, res) => {
       hotelName: req.body.hotelName, //save data in database
       hotelLicenseNumber: req.body.hotelLicenseNumber,
       hotelType: req.body.hotelType,
+      hotelClass: req.body.hotelClass,
       contactNumber: req.body.contactNumber,
       email: req.body.email,
       password: req.body.password,
     });
 
     const savedHotel = await newHotel.save();
-
-    // // Send email to admin
-    // sendDynamicEmail(
-    //   "sriyaniwasa1@gmail.com",
-    //   "New Hotel's Id",
-    //   savedHotel._id
-    // );
 
     return res.status(200).json({
       success: "Saved Successfully",

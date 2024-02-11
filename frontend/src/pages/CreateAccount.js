@@ -3,6 +3,7 @@ import Button1 from "../component/Button1";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 import { Link } from "react-router-dom";
+
 /*
 <button type="button" value="" className='py-4 px-8 rounded-xl bg-[#0e7490] hover:bg-[#0891b2] text-slate-100'><span>Traveller</span></button>
 
@@ -27,7 +28,10 @@ export default function CreateAccount() {
             <p className="text-xl">User</p>
             <div className="lg:flex lg:flex-row lg:gap-3 md:flex md:flex-row md:gap-3 sm:grid sm:grid-rows-4 sm:grid-cols-1 sm:gap-3">
               <div>
+                <Link to="/userSignup">
                 <Button1 btnName="Traveller" />
+                </Link>
+               
               </div>
               <div>
                 <Link to="/Admin">

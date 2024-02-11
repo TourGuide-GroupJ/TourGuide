@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Text1, { Mail, Password } from "../component/Text1";
 import CheckBox, { Radio } from "../component/CheckBox";
 import { Button3 } from "../component/Button1";
-import axios from "axios";
 
 export default function HotelReg() {
   const [HotelData, setHotelData] = useState();
@@ -16,6 +16,7 @@ export default function HotelReg() {
 
   //Hotel classes
   const [classType, setClassType] = useState();
+
   const HotelType = (Event) => {
     setTypes(Event.target.id);
     if (Event.target.id === "Hotel") {
@@ -38,7 +39,7 @@ export default function HotelReg() {
       HotelData === undefined ||
       HotelData === null ||
       HotelData.hName === "" ||
-      HotelData.hotelID === "" ||
+      HotelData.hotelLicenseNumber === "" ||
       HotelData.contact === "" ||
       HotelData.mail === "" ||
       HotelData.pswd === "" ||
@@ -73,7 +74,7 @@ export default function HotelReg() {
                   console.log(index);
                   if (
                     previousMail[index].HotelLicenseNumber ===
-                      HotelData.hotelID ||
+                      HotelData.hotelLicenseNumber ||
                     previousMail[index].Email === HotelData.mail
                   ) {
                     return true;
@@ -102,15 +103,13 @@ export default function HotelReg() {
   }
 
   //Sign up handling
-  let [newGuide, setNewGuide] = useState();
 
   const signup = async () => {
     try {
-      var hotelName =
-        HotelData.hName.charAt(0).toUpperCase() + HotelData.hName.slice(1);
-
-      var hotelLicenseNumber = HotelData.hotelID; //data catch from user and store in variables
+      var hotelName = HotelData.hName;
+      var hotelLicenseNumber = HotelData.hotelLicenseNumber; //data catch from user and store in variables
       var hotelType = types;
+      var hotelClass = classType;
       var contactNumber = HotelData.contact;
       var email = HotelData.mail;
       var password = HotelData.pswd;
@@ -120,17 +119,16 @@ export default function HotelReg() {
           hotelName,
           hotelLicenseNumber,
           hotelType,
+          hotelClass,
           contactNumber,
           email,
           password,
         })
         .then((res) => {
-          setNewGuide((newGuide = res.data.Guide));
-          console.log(newGuide);
           alert("Saved successfull");
           setHotelData({
             hName: "",
-            hotelID: "",
+            hotelLicenseNumber: "",
             mail: "",
             contact: "",
             pswd: "",
@@ -172,7 +170,12 @@ export default function HotelReg() {
                   <div className="flex flex-col gap-2">
                     <div className="font-semibold">Hotel license ID</div>
                     <div>
-                      <Text1 txt="12" max="8" name="hotelID" func1={func} />
+                      <Text1
+                        txt="12"
+                        max="8"
+                        name="hotelLicenseNumber"
+                        func1={func}
+                      />
                     </div>
                   </div>
                 </div>
@@ -231,7 +234,7 @@ export default function HotelReg() {
                           <Radio
                             rBtn="Resort"
                             name="type"
-                            id="Chauffeur"
+                            id="Resort"
                             isTrue={HotelType}
                           />
                           <Radio

@@ -15,6 +15,10 @@ const hotelSchema = new Schema({
     type: String,
     required: false,
   },
+  hotelClass: {
+    type: String,
+    required: false,
+  },
   contactNumber: {
     type: String,
     required: true,

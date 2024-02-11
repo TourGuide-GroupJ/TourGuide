@@ -4,26 +4,26 @@ import Button1 from "../component/Button1";
 import SearchBar from "../component/SearchBar";
 
 export default function AdminHotel() {
-  const [newHotel, setNewHotel] = useState({});
-  const [gId, setId] = useState("");
-  const [HotelName, setHotelName] = useState();
-  const [accept, setAccept] = useState(false);
-  const [block, setBlock] = useState(false);
+  let [newHotel, setNewHotel] = useState({});
+  let [hotelId, setId] = useState("");
+  let [accept, setAccept] = useState(false);
+  let [block, setBlock] = useState(false);
 
   const DBID = (Event) => {
     setId(Event.target.value);
   };
 
+
+  
   async function Search(Event) {
     Event.preventDefault();
     try {
       await axios
-        .get(`http://localhost:4000/Hotel/search/${gId}`)
+        .get(`http://localhost:4000/hotel/search/${hotelId}`)
         .then((res) => {
           setNewHotel((newHotel = res.data.Hotel));
-          setHotelName(newHotel.FirstName + " " + newHotel.LastName);
-          setAccept(newHotel.IsAccepted);
-          setBlock(newHotel.IsBlocked);
+          setAccept(newHotel.isAccepted);
+          setBlock(newHotel.isBlocked);
           console.log(newHotel);
         })
         .catch((error) => {
@@ -38,7 +38,7 @@ export default function AdminHotel() {
   async function Accept() {
     try {
       await axios
-        .patch(`http://localhost:4000/Hotel/AdminHotel/accept/${gId}`)
+        .patch(`http://localhost:4000/hotel/admin/accept/${hotelId}`)
         .then(() => {
           console.log("Accepted");
         })
@@ -55,7 +55,7 @@ export default function AdminHotel() {
     if (block) {
       try {
         await axios
-          .patch(`http://localhost:4000/Hotel/AdminHotel/unblock/${gId}`)
+          .patch(`http://localhost:4000/Hotel/AdminHotel/unblock/${hotelId}`)
           .then(() => {
             console.log("Unblocked");
             setBlock(false);
@@ -70,7 +70,7 @@ export default function AdminHotel() {
     } else {
       try {
         await axios
-          .patch(`http://localhost:4000/Hotel/AdminHotel/block/${gId}`)
+          .patch(`http://localhost:4000/Hotel/AdminHotel/block/${hotelId}`)
           .then(() => {
             console.log("Blocked");
             setBlock(true);
@@ -88,7 +88,7 @@ export default function AdminHotel() {
   async function Delete() {
     try {
       await axios
-        .delete(`http://localhost:4000/Hotel/delete/${gId}`)
+        .delete(`http://localhost:4000/Hotel/delete/${hotelId}`)
         .then(() => {
           console.log("Deleted");
         })
@@ -125,7 +125,7 @@ export default function AdminHotel() {
                 </td>
                 <td>
                   <span className="text-left"> - </span>
-                  {HotelName}
+                  {newHotel && newHotel.hotelName}
                 </td>
               </tr>
               <tr>
@@ -134,7 +134,7 @@ export default function AdminHotel() {
                 </td>
                 <td>
                   <span className="text-left"> - </span>
-                  {newHotel && newHotel.HotelId_Number}
+                  {newHotel && newHotel.hotelLicenseNumber}
                 </td>
               </tr>
               <tr>
@@ -143,7 +143,7 @@ export default function AdminHotel() {
                 </td>
                 <td>
                   <span className="text-left"> - </span>
-                  {newHotel && newHotel.HotelType}
+                  {newHotel && newHotel.hotelType}
                 </td>
               </tr>
               <tr>
@@ -152,7 +152,7 @@ export default function AdminHotel() {
                 </td>
                 <td>
                   <span className="text-left"> - </span>
-                  {newHotel && newHotel.Email}
+                  {newHotel && newHotel.email}
                 </td>
               </tr>
               <tr>
@@ -161,7 +161,7 @@ export default function AdminHotel() {
                 </td>
                 <td>
                   <span className="text-left"> - </span>
-                  {newHotel && newHotel.ContactNumber}
+                  {newHotel && newHotel.contactNumber}
                 </td>
               </tr>
             </tbody>
