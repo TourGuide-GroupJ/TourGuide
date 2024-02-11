@@ -10,7 +10,7 @@ export default function GuideReg() {
   const [guideData, setGuideData] = useState();
   const func = (Event) => {
     setGuideData({ ...guideData, [Event.target.name]: Event.target.value });
-    //console.log(guideData);
+    console.log(guideData);
   };
 
   //Guide types
