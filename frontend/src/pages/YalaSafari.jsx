@@ -10,7 +10,7 @@ function YalaSafari() {
       <Navbar />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
         <div className="lg:col-span-1 mt-5">
-          <img className="object-cover w-full" src={yala1} alt="yala1"/>
+          <img className="object-cover w-full h-full" src={yala1} alt="yala1"/>
         </div>
         <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-3xl font-semibold">Yala Safari</span>

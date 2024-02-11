@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
-import plane1 from "../assets/Aeroplane4.jpg";
+import plane1 from "../assets/Aeroplane1.jpg";
 import plane2 from "../assets/Aeroplane2.jpg";
 
 function Aeroplane() {
@@ -10,7 +10,7 @@ function Aeroplane() {
       <Navbar />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
         <div className="lg:col-span-1 mt-5">
-          <img className="object-cover w-full" src={plane1} alt="plane1" />
+          <img className="object-cover w-full h-full" src={plane1} alt="plane1" />
         </div>
         <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-3xl font-semibold">

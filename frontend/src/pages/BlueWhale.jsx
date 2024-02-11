@@ -10,7 +10,7 @@ function BlueWhale() {
       <Navbar />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
         <div className="lg:col-span-1 mt-5">
-          <img className="object-cover w-full" src={whale1} alt="whale1"/>
+          <img className="object-cover w-full h-full" src={whale1} alt="whale1"/>
         </div>
         <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-4xl font-semibold">
