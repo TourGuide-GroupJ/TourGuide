@@ -42,9 +42,9 @@ exports.getAcceptedHotels = (req, res) => {
 
 exports.registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const password = req.body.password;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: req.body.email });
 
     if (existingUser) {
       return res.status(409).json({ message: "Email already exists" });
@@ -54,11 +54,11 @@ exports.registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     
-
     const newUser = new User({
-      username,
+      firstName:req.body.firstName,
+      lastName:req.body.lastName,
       password: hashedPassword,
-      email,
+      email:req.body.email
     });
 
     await newUser.save();
@@ -95,7 +95,7 @@ exports.loginUser = async (req, res) => {
         { id: existingUser._id },
         process.env.JWT_SECRET_KEY,
         {
-          expiresIn: "1h",
+          expiresIn: "2h",
         }
       );
   
