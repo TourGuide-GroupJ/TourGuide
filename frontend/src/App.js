@@ -148,7 +148,7 @@ const router = createBrowserRouter([
     element: <YalaSafari/>,
   },
   {
-    path: "/UserSignup",
+    path: "/userSignup",
     element: <UserSignup/>,
   },
 
