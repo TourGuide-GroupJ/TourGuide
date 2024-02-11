@@ -9,12 +9,13 @@ const HotelCom = (props) => {
         alt={props.name}
         className="w-full h-[200px] object-cover rounded-t-lg"
       />
-      <div className="flex justify-between px-2 py-4">
-        <p className="font-bold text-black">{props.hotelName}</p>
-        <p>
-          <span>{props.price}</span>
-        </p>
-        <Rating />
+      <div className="flex flex-row justify-between p-1">
+        <div>
+          <p className="font-bold text-black">{props.hotelName}</p>
+        </div>
+        <div>
+          <Rating />
+        </div>
       </div>
     </div>
   );
