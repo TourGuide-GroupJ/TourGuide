@@ -17,6 +17,9 @@ router.patch("/hotel/admin/block/:id", AdminController.blockHotel);
 router.patch("/hotel/admin/unblock/:id", AdminController.unblockHotel);
 router.delete("/hotel/delete/:id", AdminController.deleteHotel);
 
+//Response
+router.get("/adminResponse", AdminController.getResponses);
+
 //****************************************************************/
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
