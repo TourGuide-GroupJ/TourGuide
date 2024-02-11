@@ -13,6 +13,8 @@ export default function AdminHotel() {
     setId(Event.target.value);
   };
 
+
+  
   async function Search(Event) {
     Event.preventDefault();
     try {

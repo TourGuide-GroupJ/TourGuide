@@ -94,7 +94,7 @@ exports.deleteGuideById = (req, res) => {
 exports.searchHotel = (req, res) => {
   Hotel.findById(req.params.id)
     .select(
-      "hotelName hotelLicenseNumber hotelType contactNumber email isAccepted isBlocked"
+      "hotelName hotelLicenseNumber hotelType hotelClass contactNumber email isAccepted isBlocked"
     )
     .then((hotel) => {
       return res.status(200).json({
