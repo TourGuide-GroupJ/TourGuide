@@ -8,6 +8,7 @@ exports.saveHotel = async (req, res) => {
       hotelName: req.body.hotelName, //save data in database
       hotelLicenseNumber: req.body.hotelLicenseNumber,
       hotelType: req.body.hotelType,
+      hotelClass: req.body.hotelClass,
       contactNumber: req.body.contactNumber,
       email: req.body.email,
       password: req.body.password,

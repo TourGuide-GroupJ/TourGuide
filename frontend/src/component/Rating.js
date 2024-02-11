@@ -34,8 +34,8 @@ const HotelRating = () => {
         {[...Array(5)].map((_, index) => (
           <svg
             key={index}
-            className={`w-4 h-4 text-${
-              index < rating ? "yellow-300" : "gray-300"
+            className={`w-4 h-4 ${
+              index < rating ? "text-yellow-300" : "text-gray-300"
             } ms-1 cursor-pointer`}
             onClick={() => handleStarClick(index)}
             aria-hidden="true"
@@ -66,8 +66,8 @@ const HotelRating = () => {
               {[...Array(5)].map((_, index) => (
                 <svg
                   key={index}
-                  className={`w-4 h-4 text-${
-                    index < rating ? "yellow-300" : "gray-300"
+                  className={`w-4 h-4 ${
+                    index < rating ? "text-yellow-300" : "text-gray-300"
                   } cursor-pointer`}
                   onClick={() => handleStarClick(index)}
                   aria-hidden="true"
