@@ -28,20 +28,46 @@ export default function Hotels() {
 
   useEffect(() => {
     const loadData = async () => {
-      console.log("ok");
+      console.log("Fetching hotel data...");
       try {
         const res = await axios.get("http://localhost:4000/hotel");
-        console.log(res.data);
+        console.log("Hotel data fetched successfully:", res.data);
         sethotelList(res.data);
         setHotels(res.data); // Set hotels state to the fetched data
       } catch (error) {
-        console.error(error);
-        alert(error.message);
+        console.error("Error fetching hotel data:", error);
+        // Check if the error is a 404 error
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error
+          alert("Hotel data not found. Please check your network connection.");
+        } else {
+          // Handle other types of errors
+          alert(
+            "An error occurred while fetching hotel data. Please try again later."
+          );
+        }
       }
     };
 
     loadData();
   }, []);
+
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     console.log("ok");
+  //     try {
+  //       const res = await axios.get("http://localhost:4000/hotel");
+  //       console.log(res.data);
+  //       sethotelList(res.data);
+  //       setHotels(res.data); // Set hotels state to the fetched data
+  //     } catch (error) {
+  //       console.error(error);
+  //       alert(error.message);
+  //     }
+  //   };
+
+  //   loadData();
+  // }, []);
 
   const [hotels, setHotels] = useState(hotelList);
 

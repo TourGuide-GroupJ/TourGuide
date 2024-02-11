@@ -36,7 +36,7 @@ import BlueWhale from "./pages/BlueWhale";
 import Dolukanda from "./pages/Dolukanda";
 import YalaSafari from "./pages/YalaSafari";
 
-import UserSignup from "../pages/UserSignup";
+import UserSignup from "./pages/UserSignup";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminResponse from "./pages/AdminResponse";
@@ -129,7 +129,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/kithulgala",
-    element: <KithulgalaRafting/>,
+    element: <KithulgalaRafting />,
   },
   {
     path: "/kirigalpoththa",
@@ -145,11 +145,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/yala",
-    element: <YalaSafari/>,
+    element: <YalaSafari />,
   },
   {
     path: "/userSignup",
-    element: <UserSignup/>,
+    element: <UserSignup />,
   },
 
   //Layout routs
@@ -178,5 +178,3 @@ function App() {
 }
 
 export default App;
-
-
