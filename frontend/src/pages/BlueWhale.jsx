@@ -8,11 +8,11 @@ function BlueWhale() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-[100px]">
-        <div className="col-span-1 lg:col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
+        <div className="lg:col-span-1 mt-5">
           <img className="object-cover w-full" src={whale1} alt="whale1"/>
         </div>
-        <div className="p-5 lg:p-10 bg-white lg:w-[1000px] lg:h-[500px] col-span-1 lg:col-span-2">
+        <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-4xl font-semibold">
             Bentota and Koggala – For blue whale watching
           </span>
@@ -41,7 +41,7 @@ function BlueWhale() {
 
           <div className="mt-10"></div>
           <img
-            className="object-cover "
+            className="object-cover w-full lg:w-auto "
             src={whale2}
             width="600"
             height="400"

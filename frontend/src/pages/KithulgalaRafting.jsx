@@ -8,11 +8,11 @@ function KithulgalaRafting() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-[100px]">
-        <div className="col-span-1 lg:col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
+        <div className="lg:col-span-1 mt-5">
           <img className="object-cover w-full" src={kithulgala1} alt="Kithulgala 1" />
         </div>
-        <div className="p-5 lg:p-10 bg-white lg:w-[1000px] lg:h-[500px] col-span-1 lg:col-span-2">
+        <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-4xl font-semibold">Kithulgala-Rafting</span>
           <div className="mt-5"></div>
           <p className="text-justify">
@@ -36,7 +36,7 @@ function KithulgalaRafting() {
           </p>
           <div className="mt-5 "></div>
           <img
-            className="object-cover"
+            className="object-cover w-full lg:w-auto"
             src={kithulgala2}
             width="600"
             height="400"

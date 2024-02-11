@@ -36,13 +36,13 @@ const ContactUs = () => {
     <div>
       <Navbar />
 
-      <div className="flex mt-[120px]">
+      <div className="flex mt-[100px]">
         <div className="hidden sm:block">
           <img
             className="object-cover "
             src={image}
             width="690"
-            height="500"
+            h-full
             alt="Contact Us Image"
           />
         </div>

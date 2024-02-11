@@ -1,24 +1,24 @@
 import React from "react";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
-import plane1 from "../assets/Aeroplane1.jpg";
+import plane1 from "../assets/Aeroplane4.jpg";
 import plane2 from "../assets/Aeroplane2.jpg";
 
 function Aeroplane() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-[100px]">
-        <div className="col-span-1 lg:col-span-1">
-          <img className="object-cover w-full" src={plane1} alt="plane1"/>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 lg:mt-20">
+        <div className="lg:col-span-1 mt-5">
+          <img className="object-cover w-full" src={plane1} alt="plane1" />
         </div>
-        <div className="p-5 lg:p-10 bg-white lg:w-[1000px] lg:h-[500px] col-span-1 lg:col-span-2">
+        <div className="p-5 lg:p-10 bg-white lg:col-span-2">
           <span className="text-3xl font-semibold">
             To the skies – Experience the 360-degree view of Colombo in an
             aeroplane
           </span>
           <div className="mt-5"></div>
-          <p className="text-justify ">
+          <p className="text-justify">
             In Sri Lanka, adventure seekers can escape their daily routines and
             embrace a thrilling experience with Cinnamon Air Scenic Flights in
             Colombo. These flights offer a unique opportunity to witness the
@@ -26,7 +26,7 @@ function Aeroplane() {
             mesmerizing bird's-eye view of the stunning landscapes
           </p>
           <div className="mt-5"></div>
-          <p className="text-justify ">
+          <p className="text-justify">
             Embark on a journey that promises enchanting tranquility and the
             ethereal allure of Sri Lanka's paradise island. Cinnamon Air Scenic
             Flights take passengers on an exploration of the remarkable terrains
@@ -38,12 +38,10 @@ function Aeroplane() {
             to create memories that will be etched forever in the consciousness
             of those who embark on this awe-inspiring adventure.
           </p>
-          <div className="mt-5"></div>
+          <div className="mt-10"></div>
           <img
-            className="object-cover "
+            className="object-cover w-full lg:w-auto"
             src={plane2}
-            width="600"
-            height="400"
             alt="plane2"
           />
         </div>
