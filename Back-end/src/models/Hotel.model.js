@@ -30,7 +30,7 @@ const hotelSchema = new Schema({
   },
   password: {
     type: String,
-    required: false,
+    required: true,
   },
   isAccepted: {
     type: Boolean,
@@ -42,10 +42,8 @@ const hotelSchema = new Schema({
     required: true,
     default: false,
   },
-
-  // Hotel_Image: {
-  //   data: Buffer,
-  //   type: String,
-  // },
 });
 module.exports = Hotel = mongoose.model("Hotel", hotelSchema);
+
+//const Hotel = mongoose.model("Hotel", hotelSchema);
+//module.exports = Hotel;

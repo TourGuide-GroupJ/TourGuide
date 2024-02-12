@@ -13,8 +13,6 @@ export default function AdminHotel() {
     setId(Event.target.value);
   };
 
-
-  
   async function Search(Event) {
     Event.preventDefault();
     try {
@@ -55,7 +53,7 @@ export default function AdminHotel() {
     if (block) {
       try {
         await axios
-          .patch(`http://localhost:4000/Hotel/AdminHotel/unblock/${hotelId}`)
+          .patch(`http://localhost:4000/hotel/admin/block/${hotelId}`)
           .then(() => {
             console.log("Unblocked");
             setBlock(false);
@@ -70,7 +68,7 @@ export default function AdminHotel() {
     } else {
       try {
         await axios
-          .patch(`http://localhost:4000/Hotel/AdminHotel/block/${hotelId}`)
+          .patch(`http://localhost:4000/hotel/admin/unblock/${hotelId}`)
           .then(() => {
             console.log("Blocked");
             setBlock(true);
