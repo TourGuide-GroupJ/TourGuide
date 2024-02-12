@@ -22,7 +22,7 @@ export default function HotelReg() {
     if (Event.target.id === "Hotel") {
       setClassType(undefined);
     }
-    console.log(HotelType);
+    console.log(types);
     console.log(classType);
   };
 
@@ -33,7 +33,6 @@ export default function HotelReg() {
   };
 
   //Avoiding to missing required data
-
   const isRequireDataFilled = () => {
     if (
       HotelData === undefined ||
@@ -59,90 +58,47 @@ export default function HotelReg() {
     } else {
       if (HotelData.pswd !== HotelData.conPswd) {
         return alert("Password & reconfirmation didn't match");
-      }
+      }     
       try {
+        var hotelName = HotelData.hName;
+        var hotelLicenseNumber = HotelData.hotelLicenseNumber; //data catch from user and store in variables
+        var hotelType = types;
+        var hotelClass = classType;
+        var contactNumber = HotelData.contact;
+        var email = HotelData.mail;
+        var password = HotelData.pswd;
+        console.log("ok");
         await axios
-          .get("http://localhost:4000/hotel/hotelReg")
+          .post("http://localhost:4000/hotel/save", {
+            hotelName,
+            hotelLicenseNumber,
+            hotelType,
+            hotelClass,
+            contactNumber,
+            email,
+            password,
+          })
           .then((res) => {
-            try {
-              const previousMail = res.data.map((item) => {
-                return { ...item };
-              });
-              console.log(previousMail);
-              const isPreviousused = () => {
-                for (let index = 0; index < previousMail.length; index++) {
-                  console.log(index);
-                  if (
-                    previousMail[index].HotelLicenseNumber ===
-                      HotelData.hotelLicenseNumber ||
-                    previousMail[index].Email === HotelData.mail
-                  ) {
-                    return true;
-                  }
-                }
-                return false;
-              };
-              console.log(isPreviousused());
-              if (isPreviousused()) {
-                return alert("This email or guide id number was before used");
-              } else {
-                signup();
-              }
-            } catch (error) {
-              alert(error);
-            }
+            alert("Saved successfull");
+            setHotelData({
+              hName: "",
+              hotelLicenseNumber: "",
+              mail: "",
+              contact: "",
+              pswd: "",
+              conPswd: "",
+            });
           })
           .catch((error) => {
             alert(error);
           });
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error);
         alert(error.message);
       }
     }
   }
-
-  //Sign up handling
-
-  const signup = async () => {
-    try {
-      var hotelName = HotelData.hName;
-      var hotelLicenseNumber = HotelData.hotelLicenseNumber; //data catch from user and store in variables
-      var hotelType = types;
-      var hotelClass = classType;
-      var contactNumber = HotelData.contact;
-      var email = HotelData.mail;
-      var password = HotelData.pswd;
-      console.log("ok");
-      await axios
-        .post("http://localhost:4000/hotel/save", {
-          hotelName,
-          hotelLicenseNumber,
-          hotelType,
-          hotelClass,
-          contactNumber,
-          email,
-          password,
-        })
-        .then((res) => {
-          alert("Saved successfull");
-          setHotelData({
-            hName: "",
-            hotelLicenseNumber: "",
-            mail: "",
-            contact: "",
-            pswd: "",
-            conPswd: "",
-          });
-          window.location.href = '/login';
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="flex justify-center bg-[#e5e7eb] h-screen">

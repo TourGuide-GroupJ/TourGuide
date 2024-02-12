@@ -1,10 +1,13 @@
-const Hotel = require("../models/Hotel.model"); // Assuming the Hotel model is defined in 'models/Hotel.js'
-const otplib = require("otplib"); // Assuming otplib is installed
-const { sendDynamicEmail } = require("../utils/EmailSender"); // Assuming you have a utility function for sending emails
-//const bycrypt = require("bycript");
+const Hotel = require("../models/Hotel.model");
 
-exports.saveHotel = async (req, res) => {
+const saveHotel = async (req, res) => {
   try {
+    const existingHotel = await Hotel.findOne({ email: req.body.email });
+
+    if (existingHotel) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+
     const newHotel = new Hotel({
       hotelName: req.body.hotelName, //save data in database
       hotelLicenseNumber: req.body.hotelLicenseNumber,
@@ -13,13 +16,12 @@ exports.saveHotel = async (req, res) => {
       contactNumber: req.body.contactNumber,
       email: req.body.email,
       password: req.body.password,
-    }); 
+    });
 
-    const savedHotel = await newHotel.save();
+    await newHotel.save();
 
     return res.status(200).json({
       success: "Saved Successfully",
-      Hotel: savedHotel,
     });
   } catch (error) {
     console.error(error);
@@ -29,16 +31,5 @@ exports.saveHotel = async (req, res) => {
   }
 };
 
-exports.getAcceptedHotels = (req, res) => {
-  const condition = { IsAccepted: true };
-  Hotel.find(condition)
-    .select("email hotelLicenseNumber")
-    .then((result) => {
-      return res.json(result);
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        Error: error,
-      });
-    });
-};
+
+module.exports = {saveHotel};
