@@ -55,7 +55,7 @@ function AdminResponse() {
         <div className="text-center">
           <span className="text-xl">Response Details</span>
         </div>
-        <div className="ml-0 md:ml-[500px]">
+        <div className=" md:ml-[500px]">
           <div className="flex flex-col gap-5">
             {responses.map((response, index) => (
               <ResponseComponent key={index} response={response} />
