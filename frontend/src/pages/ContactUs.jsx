@@ -29,81 +29,71 @@ const ContactUs = () => {
     }
   }
 
-  // Logging responses within the component
-  console.log(responses);
-
   return (
     <div>
       <Navbar />
 
-      <div className="flex mt-[100px]">
-        <div className="hidden sm:block">
+      <div className="flex flex-col lg:flex-row mt-20">
+        <div className="lg:w-1/2 mt-5">
           <img
-            className="object-cover "
+            className="object-cover w-full h-auto"
             src={image}
-            width="690"
-            h-full
             alt="Contact Us Image"
           />
         </div>
-        <div className="p-10 bg-white w-[1000px] H-[500px]">
+        <div className="p-4 lg:p-10 bg-white lg:w-1/2">
           <div>
-            <span className="mt-0 text-4xl font-bold">CONTACT US</span>
+            <h1 className="text-4xl font-bold">CONTACT US</h1>
             <form>
-              <div>
-                <div className="mt-5">
-                  <p>Your Name:</p>
-                  <input
-                    className="border-black border-solid border-[2px] w-[400px] H-[5px] rounded-lg"
-                    type="text"
-                    placeholder="Name"
-                    name="user_name"
-                    onChange={giveResponse}
-                    required
-                  />
-                </div>
-
-                <div className="mt-5">
-                  <p>Your Email:</p>
-                  <input
-                    className="border-black border-solid border-[2px] w-[400px] H-[5px] rounded-lg"
-                    type="email"
-                    placeholder="Email"
-                    name="user_email"
-                    onChange={giveResponse}
-                    required
-                  />
-                </div>
-
-                <div className="mt-5">
-                  <p>Subject:</p>
-                  <input
-                    className="border-black border-solid border-[2px] w-[400px] H-[5px] rounded-lg"
-                    type="text"
-                    placeholder="Subject"
-                    name="subject"
-                    onChange={giveResponse}
-                    required
-                  />
-                </div>
-
-                <div className="mt-5">
-                  <p>Your Message:</p>
-                  <textarea
-                    className="border-black border-solid border-[2px] w-[400px] H-[100px] rounded-lg"
-                    name="message"
-                    placeholder="Enter message"
-                    cols="25"
-                    rows="9"
-                    onChange={giveResponse}
-                  ></textarea>
-                </div>
+              <div className="mt-5">
+                <p>Your Name:</p>
+                <input
+                  className="border border-black w-full h-10 rounded-lg"
+                  type="text"
+                  placeholder="Name"
+                  name="user_name"
+                  onChange={giveResponse}
+                  required
+                />
+              </div>
+              <div className="mt-5">
+                <p>Your Email:</p>
+                <input
+                  className="border border-black w-full h-10 rounded-lg"
+                  type="email"
+                  placeholder="Email"
+                  name="user_email"
+                  onChange={giveResponse}
+                  required
+                />
+              </div>
+              <div className="mt-5">
+                <p>Subject:</p>
+                <input
+                  className="border border-black w-full h-10 rounded-lg"
+                  type="text"
+                  placeholder="Subject"
+                  name="subject"
+                  onChange={giveResponse}
+                  required
+                />
+              </div>
+              <div className="mt-5">
+                <p>Your Message:</p>
+                <textarea
+                  className="border border-black w-full h-24 rounded-lg"
+                  name="message"
+                  placeholder="Enter message"
+                  cols="25"
+                  rows="9"
+                  onChange={giveResponse}
+                ></textarea>
               </div>
               <div className="mt-5">
                 <button
                   type="submit"
                   onClick={sendResponse}
-                  className="bg-cyan-500 --btn--btn--primary border-black border-solid border-[2px] w-[125px] H-[3px] rounded-lg"
+                  className="bg-cyan-500 border border-black w-full h-10 rounded-lg"
                 >
                   Send Message
                 </button>
@@ -111,18 +101,18 @@ const ContactUs = () => {
             </form>
           </div>
           <div className="mt-10">
-            <span className="text-3xl font-bold">CONTACT INFO</span>
+            <h2 className="text-3xl font-bold">CONTACT INFO</h2>
             <div className="mt-5">
               <span className="text-2xl ">Mobile:</span>
+              <p>+94 75 617 0089</p>
+              <p>+94 77 169 0582</p>
+              <p>+94 76 289 9016</p>
+              <p>+94 77 008 9761</p>
             </div>
-            <p>+94 75 617 0089</p>
-            <p>+94 77 169 0582</p>
-            <p>+94 76 289 9016</p>
-            <p>+94 77 008 9761</p>
             <div className="mt-5">
               <span className="text-2xl ">Email:</span>
+              <p>travelguidesl2023@gmail.com</p>
             </div>
-            <p>travelguidesl2023@gmail.com</p>
           </div>
         </div>
       </div>
