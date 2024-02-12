@@ -4,6 +4,7 @@ import Footer from "../component/Footer";
 import Division from "../component/AttractCom";
 
 //images
+import FestivalImg from "../assets/FestivalImg.jpg";
 import Vesak from "../assets/Vesak.jpg";
 import Poson from "../assets/Poson.jpg";
 import SinhalaAndTamilNewYear from "../assets/SinhalaAndTamilNewYear.jpg";
@@ -15,10 +16,23 @@ const Festival = () => {
   return (
     <div>
       <Navbar />
+
+      <div className="w-full mx-auto">
+        <div className="max-h-[500px] relative">
+          <div className="absolute w-full h-full text-gray-200 max-h-[500px] bg-black/50 flex flex-col justify-center ">
+            <span className="px-4 text-5xl font-semibold tracking-wide sm:text-5xl md:text-6xl lg:text-7xl">
+              Festivals
+            </span>
+          </div>
+          <img
+            src={FestivalImg}
+            className="w-full max-h-[500px] object-cover"
+          />
+        </div>
+      </div>
+
       <div>
-        <h1 className=" uppercase text-4xl mt-[100px] font-semibold text-center ">
-          Festivals
-        </h1>
+        <h1 className=" uppercase text-4xl mt-[40px] font-semibold text-center "></h1>
       </div>
       <div>
         <div className="mt-5 ml-[150px] max-w-[1000px] mx-auto">

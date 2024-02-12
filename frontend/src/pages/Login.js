@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 /* (Event) => Handleclick(Event) 
 const [data, setData] = useState();
 
@@ -9,10 +11,6 @@ const handletext = (Event) => {
      console.log(data);
 
 */
-
-function Handlesubmit(Event) {
-    Event.preventDefault();
-}
 
 
 export default function Login() {
@@ -23,7 +21,8 @@ export default function Login() {
         console.log(userData);
     }
 
-    const handleclick = () => {
+    const handleclick = async(Event) => {
+        Event.preventDefault();
         if (userData.userName === "" & userData.Pswd === "") {
                 alert("Please insert your User Name/E-mail and Password");
         }
@@ -34,6 +33,16 @@ export default function Login() {
             if (userData.Pswd === "") {
                 alert("Please insert your Password");
             }
+            const email =userData.userName;
+            const password =userData.Pswd;
+            try {
+                const response = await axios.post('http://localhost:4000/login', {email,password});
+                console.log('Signup successful:', response.data);
+                // Handle successful signup, e.g., redirect to another page
+              } catch (error) {
+                console.error('Signup error:', error);
+                // Handle signup error, e.g., display error message to the user
+              }
         }
     }
 
@@ -42,7 +51,7 @@ export default function Login() {
             <div className='lg:mt-[15vh] sm:mt-[5vh] mx-auto flex flex-col gap-6 rounded-xl p-4 lg:w-[500px] lg:h-[550px] sm:w-[300px] sm:h-[440px] bg-white justify-center'>
                 <div></div>
                 <div className='flex justify-center'><span className='text-xl font-semibold'>Sign in to your account</span></div>
-                <form action="" method="GET" name='logInForm' onSubmit={Handlesubmit} className='flex flex-col gap-6'>
+                <form action="" method="GET" name='logInForm' className='flex flex-col gap-6'>
                     <div className='flex flex-col'><span>User name or E-mail</span>
                         <input type="text" name="userName" id="userName" onChange={handletext} className='px-8 py-2 rounded-xl border-[#94a3b8] border-2' /></div>
                     <div className='flex flex-col gap-1'>

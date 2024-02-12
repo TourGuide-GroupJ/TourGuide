@@ -1,10 +1,5 @@
 import React from "react";
-/*            <div><span>ID - </span>{prop.id}</div>
-              <div><span>Address - </span>{prop.address}</div>
-              <div><span>E-mail - </span>{prop.email}</div>
-              <div><span>Contact - </span>{prop.contact}</div>
-              <div><span>Type - </span>{prop.type}</div>
-              <div><span>Languages - </span>{prop.language}</div> */
+import Rating from "../component/Rating";
 
 export default function Guidcom(prop) {
   return (
@@ -27,6 +22,7 @@ export default function Guidcom(prop) {
               <tr><td>Contact </td><td> - </td><td>{prop.contact}</td></tr>
               <tr><td>Type </td><td> - </td><td>{prop.type}</td></tr>
               <tr><td>Languages </td><td> - </td><td>{prop.language}</td></tr>
+              <tr><Rating/></tr>
               </tbody>
               </table>
             </div>

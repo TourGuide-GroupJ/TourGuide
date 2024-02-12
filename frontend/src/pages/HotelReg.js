@@ -134,6 +134,7 @@ export default function HotelReg() {
             pswd: "",
             conPswd: "",
           });
+          window.location.href = '/login';
         })
         .catch((error) => {
           alert(error);
