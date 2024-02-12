@@ -1,10 +1,12 @@
 const Hotel = require("../models/Hotel.model");
 const Guide = require("../models/Guide.model"); // Assuming the Guide model is defined in 'models/Guide.js'
 const UserResponse = require("../models/UserResponse.model");
+const dotenv = require("dotenv");
 
 const User = require("../models/UserSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+dotenv.config();
 
 //const otplib = require('otplib'); // Assuming otplib is installed
 //const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
@@ -39,11 +41,12 @@ exports.getAcceptedHotels = (req, res) => {
     });
 };
 
-exports.registerUser = async (req, res) => {
+exports.registerUser = async(req, res) => {
   try {
     const password = req.body.password;
 
     const existingUser = await User.findOne({ email: req.body.email });
+
 
     if (existingUser) {
       return res.status(409).json({ message: "Email already exists" });
@@ -67,34 +70,53 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+//******************************************************************************** */
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email: email });
+    const existingGuide = await Guide.findOne({ Email: email });
 
-    if (!existingUser) {
+    if (!existingUser || !existingGuide) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    console.log(password, existingUser.password);
-    const isPasswordCorrect = await bcrypt.compare(
+    let token;
+
+    const isUserPasswordCorrect = await bcrypt.compare(
       password,
       existingUser.password
     );
 
-    if (!isPasswordCorrect) {
+    const isGuidePasswordCorrect = await bcrypt.compare(
+      password,
+      existingGuide.Password
+    );
+
+    if (!isUserPasswordCorrect && !isGuidePasswordCorrect) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign(
-      { id: existingUser._id },
-      process.env.JWT_SECRET_KEY,
-      {
-        expiresIn: "1h",
-      }
-    );
+    if (isGuidePasswordCorrect) {
+      token = jwt.sign(
+        { id: existingGuide._id },
+        process.env.JWT_SECRET_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
+    }
+
+    if (isUserPasswordCorrect) {
+      token = jwt.sign(
+        { id: existingUser._id },
+        process.env.JWT_SECRET_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
+    }
 
     res.status(200).json({
       token,
@@ -104,6 +126,8 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+//**********************************************************************/
 
 exports.postResponse = async (req, res) => {
   try {

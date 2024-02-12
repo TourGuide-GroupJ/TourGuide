@@ -11,26 +11,26 @@ const UserSignup = () => {
     password: "",
   });
 
-  const saveUserData = (e) => {
-    setUserSignup({ ...userSignup, [e.target.name]: e.target.value });
-  };
+    const saveUserData = (e) => {
+        setUserSignup({ ...userSignup, [e.target.name]: e.target.value });
+      };
+    
+      const UserRegister = async(e) => {
+        e.preventDefault();
 
-  const UserRegister = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/register",
-        userSignup
-      );
-      console.log("Signup successful:", response.data);
-      // Handle successful signup, e.g., redirect to another page
-    } catch (error) {
-      console.error("Signup error:", error);
-      // Handle signup error, e.g., display error message to the user
-    }
-  };
-
+        
+        try {
+          const response = await axios.post('http://localhost:4000/register', userSignup);
+          console.log('Signup successful:', response.data);
+          window.location.href = '/login';
+          // Handle successful signup, e.g., redirect to another page
+        } catch (error) {
+          console.error('Signup error:', error);
+          // Handle signup error, e.g., display error message to the user
+        }
+      };
+    
+    
   return (
     <div className="flex justify-center  items-center bg-[#e5e7eb] h-[100vh] "  >
     <div className="relative p-8 rounded-md shadow-lg bg-slate-800 border-slate-400 backdrop-filter backdrop-blur-sm bg-opacity-30">
