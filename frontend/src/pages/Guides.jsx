@@ -4,6 +4,7 @@ import GuideSearch from "../component/GuideSearch1";
 import Guide from "../assets/GuideProfile2.jpg";
 import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
+// import Rating from "../component/Rating";
 import axios from "axios";
 
 /*<div className="grid gap-12 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">*/
@@ -13,13 +14,13 @@ const GuideComponent = ({ guideData }) => {
     <div>
       <Guidcom
         image={Guide}
-        guideName={guideData.FirstName + " " + guideData.LastName}
-        id={guideData.GuideId_Number}
-        expDate={guideData.GuideId_ExpiredDate}
-        email={guideData.Email}
-        contact={guideData.ContactNumber}
-        type={guideData.GuideType}
-        language={guideData.Language}
+        guideName={guideData && guideData.FirstName + " " + guideData.LastName}
+        id={guideData && guideData.GuideId_Number}
+        expDate={guideData && guideData.GuideId_ExpiredDate}
+        email={guideData && guideData.Email}
+        contact={guideData && guideData.ContactNumber}
+        type={guideData && guideData.GuideType}
+        language={guideData && guideData.Language}
       />
     </div>
   );
@@ -45,16 +46,6 @@ export default function Guides() {
       alert(error.message);
     }
   };
-
-  /* const loadData = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/guide');
-      setGuideList(response.data);
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
-    }
-  };*/
 
   useEffect(() => {
     loadData();

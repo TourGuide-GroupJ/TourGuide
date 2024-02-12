@@ -15,13 +15,14 @@ const UserSignup = () => {
         setUserSignup({ ...userSignup, [e.target.name]: e.target.value });
       };
     
-      const UserRegister = async (e) => {
+      const UserRegister = async(e) => {
         e.preventDefault();
 
         
         try {
           const response = await axios.post('http://localhost:4000/register', userSignup);
           console.log('Signup successful:', response.data);
+          window.location.href = '/login';
           // Handle successful signup, e.g., redirect to another page
         } catch (error) {
           console.error('Signup error:', error);

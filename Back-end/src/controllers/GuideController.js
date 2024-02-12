@@ -1,11 +1,16 @@
 const Guide = require('../models/Guide.model'); // Assuming the Guide model is defined in 'models/Guide.js'
 const otplib = require('otplib'); // Assuming otplib is installed
 const {sendDynamicEmail} = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
+const bcrypt = require("bcryptjs");
 
 
 exports.saveGuide = async (req, res) => {
   try {
+    const password = req.body.Password;
     const userRandom = Math.floor(100000 + Math.random() * 900000);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newGuide = new Guide({
       FirstName: req.body.FirstName,
       LastName: req.body.LastName,
@@ -18,8 +23,9 @@ exports.saveGuide = async (req, res) => {
       ContactNumber: req.body.ContactNumber,
       Gender: req.body.Gender,
       UserName: req.body.LastName + userRandom,
-      Password: req.body.Password,
+      Password: hashedPassword,
     });
+
 
     const savedGuide = await newGuide.save();
 

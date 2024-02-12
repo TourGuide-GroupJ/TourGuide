@@ -185,6 +185,7 @@ export default function GuideReg() {
             pswd: "",
             conPswd: "",
           });
+          window.location.href = '/login';
         })
         .catch((error) => {
           alert(error);
