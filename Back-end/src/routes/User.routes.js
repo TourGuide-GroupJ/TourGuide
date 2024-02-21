@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/UserController");
 
-router.get("/guide", userController.getAcceptedGuides);
+router.get("/user/guides", userController.getAcceptedGuides);
 
-router.get("/hotel", userController.getAcceptedHotels);
+router.get("/user/hotels", userController.getAcceptedHotels);
 
 router.post("/register", userController.registerUser);
 

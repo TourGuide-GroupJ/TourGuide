@@ -143,7 +143,7 @@ exports.blockHotel = (req, res) => {
 };
 
 exports.unblockHotel = (req, res) => {
-  Guide.findByIdAndUpdate(req.params.id, { isBlocked: false })
+  Hotel.findByIdAndUpdate(req.params.id, { isBlocked: false })
     .then(() => {
       console.log("Unblocked");
       return res.status(200).json({

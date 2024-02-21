@@ -39,6 +39,7 @@ export default function Login() {
                 const response = await axios.post('http://localhost:4000/login', {email,password});
                 console.log('Signup successful:', response.data);
                 // Handle successful signup, e.g., redirect to another page
+                
               } catch (error) {
                 console.error('Signup error:', error);
                 // Handle signup error, e.g., display error message to the user

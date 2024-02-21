@@ -41,12 +41,11 @@ exports.getAcceptedHotels = (req, res) => {
     });
 };
 
-exports.registerUser = async(req, res) => {
+exports.registerUser = async (req, res) => {
   try {
     const password = req.body.password;
 
     const existingUser = await User.findOne({ email: req.body.email });
-
 
     if (existingUser) {
       return res.status(409).json({ message: "Email already exists" });
@@ -56,10 +55,10 @@ exports.registerUser = async(req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      firstName:req.body.firstName,
-      lastName:req.body.lastName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       password: hashedPassword,
-      email:req.body.email
+      email: req.body.email,
     });
 
     await newUser.save();
@@ -75,32 +74,25 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await User.findOne({ email });
     const existingGuide = await Guide.findOne({ Email: email });
 
-    if (!existingUser || !existingGuide) {
-      return res.status(401).json({ message: "Invalid credentials" });
+    if (!existingUser && !existingGuide) {
+      return res.status(401).json({ message: "Invalid Email" });
     }
 
     let token;
 
-    const isUserPasswordCorrect = await bcrypt.compare(
-      password,
-      existingUser.password
-    );
-
-    const isGuidePasswordCorrect = await bcrypt.compare(
-      password,
-      existingGuide.Password
-    );
-
-    if (!isUserPasswordCorrect && !isGuidePasswordCorrect) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    if (isGuidePasswordCorrect) {
+    if (existingUser) {
+      const isUserPasswordCorrect = await bcrypt.compare(
+        password,
+        existingUser.password
+      );
+      if (!isUserPasswordCorrect) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
       token = jwt.sign(
-        { id: existingGuide._id },
+        { id: existingUser._id }, // Pass relevant data as payload
         process.env.JWT_SECRET_KEY,
         {
           expiresIn: "2h",
@@ -108,9 +100,16 @@ exports.loginUser = async (req, res) => {
       );
     }
 
-    if (isUserPasswordCorrect) {
+    if (existingGuide) {
+      const isGuidePasswordCorrect = await bcrypt.compare(
+        password,
+        existingGuide.Password
+      );
+      if (!isGuidePasswordCorrect) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
       token = jwt.sign(
-        { id: existingUser._id },
+        { id: existingGuide._id }, // Pass relevant data as payload
         process.env.JWT_SECRET_KEY,
         {
           expiresIn: "2h",
@@ -151,3 +150,14 @@ exports.postResponse = async (req, res) => {
     });
   }
 };
+
+
+
+
+// token = jwt.sign(
+//   { id: existingGuide._id },
+//   process.env.JWT_SECRET_KEY,
+//   {
+//     expiresIn: "2h",
+//   }
+// );

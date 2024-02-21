@@ -4,7 +4,6 @@ import GuideSearch from "../component/GuideSearch1";
 import Guide from "../assets/GuideProfile2.jpg";
 import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
-// import Rating from "../component/Rating";
 import axios from "axios";
 
 /*<div className="grid gap-12 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">*/
@@ -29,11 +28,38 @@ const GuideComponent = ({ guideData }) => {
 export default function Guides() {
   const [guideList, setGuideList] = useState([]);
 
+  const [guides, setGuides] = useState([]);
+
+  //Filter type
+  const filterType = (guideType) => {
+    setGuides(
+      guideList.filter((guideData) => {
+        return guideData.GuideType === guideType;
+      })
+    );
+  };
+
+  const selectType = (Event) => {
+    const selectedType = Event.target.value;
+    console.log(selectedType);
+    if (selectedType === "All Types") {
+      setGuides(guideList);
+    } else {
+      filterType(selectedType);
+    }
+  };
+
+
+  const selectLanguage = (Event) => {
+    const selectedLanguage = Event.target.value;
+    console.log(selectedLanguage);
+  };
+
   const loadData = async () => {
     console.log("ok");
     try {
       await axios
-        .get("http://localhost:4000/guide")
+        .get("http://localhost:4000/user/guides")
         .then((res) => {
           console.log(res.data);
           setGuideList(res.data);
@@ -51,12 +77,16 @@ export default function Guides() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    setGuides(guideList); 
+  }, [guideList]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [guidesPerPage] = useState(5);
 
   const indexOfLastGuide = currentPage * guidesPerPage;
   const indexOfFirstGuide = indexOfLastGuide - guidesPerPage;
-  const currentGuides = guideList.slice(indexOfFirstGuide, indexOfLastGuide);
+  const currentGuides = guides.slice(indexOfFirstGuide, indexOfLastGuide);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -79,10 +109,10 @@ export default function Guides() {
                   <GuideComponent key={index} guideData={guideData} />
                 ))}
                 <div className="flex justify-center">
-                  {guideList.length > guidesPerPage && (
+                  {guides.length > guidesPerPage && (
                     <ul className="flex flex-row gap-3">
                       {Array.from({
-                        length: Math.ceil(guideList.length / guidesPerPage),
+                        length: Math.ceil(guides.length / guidesPerPage),
                       }).map((_, index) => (
                         <li key={index}>
                           <button onClick={() => paginate(index + 1)}>
@@ -95,7 +125,10 @@ export default function Guides() {
                 </div>
               </div>
               <div className="flex justify-center basis-1/3 lg:order-last md:order-first sm:order-first">
-                <GuideSearch />
+                <GuideSearch
+                  selectType={selectType}
+                  selectLanguage={selectLanguage}
+                />
               </div>
             </div>
           </div>

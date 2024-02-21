@@ -1,11 +1,17 @@
-const Guide = require('../models/Guide.model'); // Assuming the Guide model is defined in 'models/Guide.js'
-const otplib = require('otplib'); // Assuming otplib is installed
-const {sendDynamicEmail} = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
+const Guide = require("../models/Guide.model"); // Assuming the Guide model is defined in 'models/Guide.js'
+const otplib = require("otplib"); // Assuming otplib is installed
+const { sendDynamicEmail } = require("../utils/EmailSender"); // Assuming you have a utility function for sending emails
 const bcrypt = require("bcryptjs");
-
 
 exports.saveGuide = async (req, res) => {
   try {
+    const existingGuideMail = await Guide.findOne({ Email: req.body.Email });
+    const existingGuideId = await Guide.findOne({ GuideId_Number: req.body.GuideId_Number });
+
+    if (existingGuideMail || existingGuideId) {
+      return res.status(409).json({ message: "Account already exists" });
+    }
+
     const password = req.body.Password;
     const userRandom = Math.floor(100000 + Math.random() * 900000);
     const salt = await bcrypt.genSalt(10);
@@ -26,11 +32,14 @@ exports.saveGuide = async (req, res) => {
       Password: hashedPassword,
     });
 
-
     const savedGuide = await newGuide.save();
 
     // Send email to admin
-    sendDynamicEmail("sriyaniwasa1@gmail.com", "New Guide's Id", savedGuide._id);
+    sendDynamicEmail(
+      "sriyaniwasa1@gmail.com",
+      "New Guide's Id",
+      savedGuide._id
+    );
 
     return res.status(200).json({
       success: "Saved Successfully",
@@ -168,7 +177,6 @@ exports.otpAlertUpdate = async (req, res) => {
   console.log(profSecret);
   const otpValidation = otplib.authenticator.check(enteredOtp, profSecret);
   console.log(otpValidation);
-  
 
   if (otpValidation) {
     Guide.findByIdAndUpdate(profId, {
@@ -203,16 +211,16 @@ exports.otpAlertUpdate = async (req, res) => {
   }
 };
 
-exports.getAcceptedGuides = (req, res) => {
-  const condition = { IsAccepted: true };
-  Guide.find(condition)
-    .select("Email GuideId_Number")
-    .then((result) => {
-      return res.json(result);
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        Error: error,
-      });
-    });
-  };
+// exports.getAcceptedGuides = (req, res) => {
+//   const condition = { IsAccepted: true };
+//   Guide.find(condition)
+//     .select("Email GuideId_Number")
+//     .then((result) => {
+//       return res.json(result);
+//     })
+//     .catch((error) => {
+//       return res.status(400).json({
+//         Error: error,
+//       });
+//     });
+//   };

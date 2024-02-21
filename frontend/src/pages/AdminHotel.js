@@ -5,19 +5,19 @@ import SearchBar from "../component/SearchBar";
 
 export default function AdminHotel() {
   let [newHotel, setNewHotel] = useState({});
-  let [hotelId, setId] = useState("");
+  let [hotelId, setHotelId] = useState("");
   let [accept, setAccept] = useState(false);
   let [block, setBlock] = useState(false);
 
   const DBID = (Event) => {
-    setId(Event.target.value);
+    setHotelId(Event.target.value);
   };
 
   async function Search(Event) {
     Event.preventDefault();
     try {
       await axios
-        .get(`http://localhost:4000/hotel/search/${hotelId}`)
+        .get(`http://localhost:4000/admin/hotels/search/${hotelId}`)
         .then((res) => {
           setNewHotel((newHotel = res.data.Hotel));
           setAccept(newHotel.isAccepted);
@@ -36,7 +36,7 @@ export default function AdminHotel() {
   async function Accept() {
     try {
       await axios
-        .patch(`http://localhost:4000/hotel/admin/accept/${hotelId}`)
+        .patch(`http://localhost:4000/admin/hotels/accept/${hotelId}`)
         .then(() => {
           console.log("Accepted");
         })
@@ -53,7 +53,7 @@ export default function AdminHotel() {
     if (block) {
       try {
         await axios
-          .patch(`http://localhost:4000/hotel/admin/block/${hotelId}`)
+          .patch(`http://localhost:4000/admin/hotels/unblock/${hotelId}`)
           .then(() => {
             console.log("Unblocked");
             setBlock(false);
@@ -68,7 +68,7 @@ export default function AdminHotel() {
     } else {
       try {
         await axios
-          .patch(`http://localhost:4000/hotel/admin/unblock/${hotelId}`)
+          .patch(`http://localhost:4000/admin/hotels/block/${hotelId}`)
           .then(() => {
             console.log("Blocked");
             setBlock(true);
@@ -86,7 +86,7 @@ export default function AdminHotel() {
   async function Delete() {
     try {
       await axios
-        .delete(`http://localhost:4000/Hotel/delete/${hotelId}`)
+        .delete(`http://localhost:4000/admin/hotels/delete/${hotelId}`)
         .then(() => {
           console.log("Deleted");
         })

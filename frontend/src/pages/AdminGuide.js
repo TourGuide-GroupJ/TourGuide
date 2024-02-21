@@ -18,7 +18,7 @@ export default function Admin() {
     Event.preventDefault();
     try {
       await axios
-        .get(`http://localhost:4000/guide/search/${gId}`)
+        .get(`http://localhost:4000/admin/guides/search/${gId}`)
         .then((res) => {
           setNewGuide((newGuide = res.data.Guide));
           setGuideName(newGuide.FirstName + " " + newGuide.LastName);
@@ -38,7 +38,7 @@ export default function Admin() {
   async function Accept() {
     try {
       await axios
-        .patch(`http://localhost:4000/guide/admin/accept/${gId}`)
+        .patch(`http://localhost:4000/admin/guides/accept/${gId}`)
         .then(() => {
           console.log("Accepted");
         })
@@ -55,7 +55,7 @@ export default function Admin() {
     if (block) {
       try {
         await axios
-          .patch(`http://localhost:4000/guide/admin/unblock/${gId}`)
+          .patch(`http://localhost:4000/admin/guides/unblock/${gId}`)
           .then(() => {
             console.log("Unblocked");
             setBlock(false);
@@ -70,7 +70,7 @@ export default function Admin() {
     } else {
       try {
         await axios
-          .patch(`http://localhost:4000/guide/admin/block/${gId}`)
+          .patch(`http://localhost:4000/admin/guides/block/${gId}`)
           .then(() => {
             console.log("Blocked");
             setBlock(true);
@@ -88,7 +88,7 @@ export default function Admin() {
   async function Delete() {
     try {
       await axios
-        .delete(`http://localhost:4000/guide/delete/${gId}`)
+        .delete(`http://localhost:4000/admin/guides/delete/${gId}`)
         .then(() => {
           console.log("Deleted");
         })

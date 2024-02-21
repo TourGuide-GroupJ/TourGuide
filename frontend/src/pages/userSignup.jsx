@@ -22,11 +22,12 @@ const UserSignup = () => {
         try {
           const response = await axios.post('http://localhost:4000/register', userSignup);
           console.log('Signup successful:', response.data);
-          window.location.href = '/login';
           // Handle successful signup, e.g., redirect to another page
+          window.location.href = '/login';
         } catch (error) {
           console.error('Signup error:', error);
           // Handle signup error, e.g., display error message to the user
+          alert(error);
         }
       };
     

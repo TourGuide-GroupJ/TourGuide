@@ -92,6 +92,10 @@ export default function GuideReg() {
   };
 
   //Submit
+
+  // const previousMail = res.data.map((item) => {
+  //           return { ...item };
+  //         });
   async function submit(Event) {
     Event.preventDefault();
     if (isRequireDataFilled()) {
@@ -101,99 +105,59 @@ export default function GuideReg() {
         return alert("Password & reconfirmation didn't match");
       }
       try {
+        var FirstName =
+          guideData.name1.charAt(0).toUpperCase() + guideData.name1.slice(1);
+        var LastName =
+          guideData.name2.charAt(0).toUpperCase() + guideData.name2.slice(1);
+        var NIC_Number = guideData.nic;
+        var GuideId_Number = guideData.Gid;
+        var GuideId_Expdate = expDate;
+        var GuideType = types;
+        let Language = langArray;
+        var Email = guideData.mail;
+        var ContactNumber = guideData.contact;
+        var Gender = gender;
+        var Password = guideData.pswd;
+        console.log("ok");
         await axios
-          .get("http://localhost:4000/guide/guideReg")
+          .post("http://localhost:4000/guide/save", {
+            FirstName,
+            LastName,
+            NIC_Number,
+            GuideId_Number,
+            GuideId_Expdate,
+            GuideType,
+            Language,
+            Email,
+            ContactNumber,
+            Gender,
+            Password,
+          })
           .then((res) => {
-            try {
-              const previousMail = res.data.map((item) => {
-                return { ...item };
-              });
-              console.log(previousMail);
-              const isPreviousused = () => {
-                for (let index = 0; index < previousMail.length; index++) {
-                  console.log(index);
-                  if (
-                    previousMail[index].GuideId_Number === guideData.Gid ||
-                    previousMail[index].Email === guideData.mail
-                  ) {
-                    return true;
-                  }
-                }
-                return false;
-              };
-              console.log(isPreviousused());
-              if (isPreviousused()) {
-                return alert("This email or guide id number was before used");
-              } else {
-                signup();
-              }
-            } catch (error) {
-              alert(error);
-            }
+            setNewGuide((newGuide = res.data.Guide));
+            console.log(newGuide);
+            alert("Saved successfull");
+            setGuideData({
+              name1: "",
+              name2: "",
+              Gid: "",
+              mail: "",
+              contact: "",
+              pswd: "",
+              conPswd: "",
+            });
+            window.location.href = "/login";
           })
           .catch((error) => {
             alert(error);
           });
       } catch (error) {
-        console.error(error);
-        alert(error.message);
+        console.log(error);
       }
     }
   }
 
-  //Sign up handling
   let [newGuide, setNewGuide] = useState();
-
-  const signup = async () => {
-    try {
-      var FirstName = guideData.name1.charAt(0).toUpperCase() + guideData.name1.slice(1);
-      var LastName = guideData.name2.charAt(0).toUpperCase() + guideData.name2.slice(1);
-      var NIC_Number = guideData.nic;
-      var GuideId_Number = guideData.Gid;
-      var GuideId_Expdate = expDate;
-      var GuideType = types;
-      let Language = langArray;
-      var Email = guideData.mail;
-      var ContactNumber = guideData.contact;
-      var Gender = gender;
-      var Password = guideData.pswd;
-      console.log("ok");
-      await axios
-        .post("http://localhost:4000/guide/save", {
-          FirstName,
-          LastName,
-          NIC_Number,
-          GuideId_Number,
-          GuideId_Expdate,
-          GuideType,
-          Language,
-          Email,
-          ContactNumber,
-          Gender,
-          Password,
-        })
-        .then((res) => {
-          setNewGuide((newGuide = res.data.Guide));
-          console.log(newGuide);
-          alert("Saved successfull");
-          setGuideData({
-            name1: "",
-            name2: "",
-            Gid: "",
-            mail: "",
-            contact: "",
-            pswd: "",
-            conPswd: "",
-          });
-          window.location.href = '/login';
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="flex justify-center bg-[#e5e7eb] h-full">

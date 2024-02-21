@@ -1,7 +1,8 @@
 import React from "react";
-/*border-2 border-b-slate-100 rounded-xl lg:w-[400px] lg:h-[533px] sm:w-[300px] */
 
-export default function GuideSearch1() {
+
+export default function GuideSearch1(props) {
+  
   return (
     <div className="lg:w-[400px] lg:h-[520px] md:w-[400px] sm:w-[300px] border-2 border-b-slate-100 rounded-xl">
         <div className="flex justify-center p-4 bg-slate-700 rounded-t-xl">
@@ -30,6 +31,7 @@ export default function GuideSearch1() {
             <select
               size="1"
               className="px-8 py-2 cursor-pointer form-input rounded-2xl"
+              onChange={props.selectType}
             >
               <option>All Types</option>
               <option>Area</option>
@@ -43,7 +45,9 @@ export default function GuideSearch1() {
             <select
               size="1"
               className="px-8 py-2 cursor-pointer form-input rounded-2xl"
+              onChange={props.selectLanguage}
             >
+              <option>All Languages</option>
               <option>English</option>
               <option>Italic</option>
               <option>Chinees</option>
