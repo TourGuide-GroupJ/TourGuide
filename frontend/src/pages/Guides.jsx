@@ -6,6 +6,7 @@ import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import axios from "axios";
 
+
 /*<div className="grid gap-12 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">*/
 
 const GuideComponent = ({ guideData }) => {
@@ -29,30 +30,48 @@ export default function Guides() {
   const [guideList, setGuideList] = useState([]);
 
   const [guides, setGuides] = useState([]);
+  const [guides1, setGuides1] = useState([]);
+  const [guides2, setGuides2] = useState([]);
 
-  //Filter type
+
   const filterType = (guideType) => {
-    setGuides(
+    setGuides1(
       guideList.filter((guideData) => {
         return guideData.GuideType === guideType;
       })
     );
   };
 
+  const filterLanguage = (guideLanguage) => {
+    setGuides2(
+      guideList.filter((guideData) => {
+        return guideData.Language === guideLanguage;
+      })
+    );
+  };
+
+  
   const selectType = (Event) => {
     const selectedType = Event.target.value;
     console.log(selectedType);
     if (selectedType === "All Types") {
-      setGuides(guideList);
+      setGuides1(guideList);
     } else {
       filterType(selectedType);
     }
+    console.log(guides1);
   };
 
-
+  
   const selectLanguage = (Event) => {
     const selectedLanguage = Event.target.value;
     console.log(selectedLanguage);
+    if (selectedLanguage === "All Languages") {
+      setGuides2(guideList);
+    } else {
+      filterLanguage(selectedLanguage);
+    }
+    console.log(guides2);
   };
 
   const loadData = async () => {
@@ -63,6 +82,8 @@ export default function Guides() {
         .then((res) => {
           console.log(res.data);
           setGuideList(res.data);
+          setGuides1(res.data);
+          setGuides2(res.data);
         })
         .catch((error) => {
           alert(error);
@@ -78,8 +99,18 @@ export default function Guides() {
   }, []);
 
   useEffect(() => {
-    setGuides(guideList); 
+    setGuides(guideList);
   }, [guideList]);
+
+  useEffect(() => {
+    // Calculate the intersection when guides1 or guides2 change
+    const intersection = guides1.filter(guide1 =>
+      guides2.some(guide2 => guide2._id === guide1._id)
+    );
+    // Update the guides state with the intersection result
+    setGuides(intersection);
+    console.log(intersection);
+  }, [guides1, guides2]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [guidesPerPage] = useState(5);

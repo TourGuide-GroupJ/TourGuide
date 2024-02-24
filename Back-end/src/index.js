@@ -18,7 +18,7 @@ try {
   const userRoutes = require("./routes/User.routes.js");
   const auth = require("./authentication/auth.js");
 
-  app.use("/guide",auth,guideRoutes);
+  app.use("/guide",guideRoutes);
   app.use("/hotel",auth,hotelRoutes);
   app.use("/admin",adminRoutes);
   app.use(userRoutes);
