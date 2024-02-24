@@ -1,35 +1,20 @@
-import React from 'react'
+import React from 'react';
 
-function UserResponse() {
+function UserResponse(props) {
   return (
     <div className="flex flex-row">
-    <table className="p-5">
-      <thead></thead>
-      <tbody>
-        <tr>
-          <td>
-            <span>user_name - </span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>user_email - </span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>subject - </span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span>message - </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  )
+      <div className="bg-gray-200 p-4 rounded-lg mb-4">
+        <div className="text-gray-700">
+          <p className="font-bold">From: {props.name}</p>
+          <p>Email: {props.email}</p>
+          <p>Subject: {props.subject}</p>
+          <p>Message: <strong>{props.message}</strong></p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default UserResponse
+export default UserResponse;
+
+

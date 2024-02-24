@@ -1,6 +1,7 @@
 const Guide = require("../models/Guide.model");
 const Hotel = require("../models/Hotel.model");
 const Attraction = require("../models/Attraction.model");
+const Response = require("../models/UserResponse.model");
 
 //const otplib = require('otplib'); // Assuming otplib is installed
 //const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
@@ -199,4 +200,24 @@ exports.addAttraction = async (req, res) => {
     console.error("Error adding attraction:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
+};
+
+
+
+// Assuming you have a Response model defined with Mongoose
+
+exports.getResponses = (req, res) => {
+  Response.find().select("user_email user_name subject message") // Fetch all responses
+    .then((responses) => {
+      return res.status(200).json({
+        success: true,
+        Responses: responses,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({
+        error: error.message, // Return error message
+      });
+    });
 };
