@@ -24,7 +24,7 @@ function AdminResponse() {
     const fetchResponses = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:4000/adminResponse");
+        const response = await axios.get("http://localhost:4000/admin/adminResponse");
         console.log("Response data:", response.data); // Log the response data
         setResponses(response.data.Responses);
         console.log(responses);

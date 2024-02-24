@@ -16,6 +16,8 @@ router.patch("/hotels/block/:id", AdminController.blockHotel);
 router.patch("/hotels/unblock/:id", AdminController.unblockHotel);
 router.delete("/hotels/delete/:id", AdminController.deleteHotel);
 
+router.get("/adminResponse",AdminController.getResponses);
+
 router.post("/attractions/save", AdminController.addAttraction);
 
 module.exports = router;

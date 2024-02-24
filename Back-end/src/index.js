@@ -19,7 +19,7 @@ try {
   const auth = require("./authentication/auth.js");
 
   app.use("/guide",guideRoutes);
-  app.use("/hotel",auth,hotelRoutes);
+  app.use("/hotel",hotelRoutes);
   app.use("/admin",adminRoutes);
   app.use(userRoutes);
 
