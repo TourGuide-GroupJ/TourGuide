@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //web site logo icon
 import CircleIcon from "@mui/icons-material/Circle";
 
 const Navbar = () => {
+  const [hasToken, setHasToken] = useState(false);
+  const checkToken = () => {
+    const token = sessionStorage.getItem("jwtToken");
+    if (!token) {
+      return setHasToken(false);
+    } else {
+      return setHasToken(true);
+    }
+  };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between w-full p-4 py-8 bg-black opacity-80">
       {/* logo and name */}
@@ -43,12 +57,21 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              className="text-white  hover:text-gray-500 no-underline uppercase text-[16px] font-semibold"
-              to="/login"
-            >
-              Login
-            </Link>
+            {hasToken ? (
+              <Link
+                className="text-white  hover:text-gray-500 no-underline uppercase text-[16px] font-semibold"
+                to="/login"
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                className="text-white  hover:text-gray-500 no-underline uppercase text-[16px] font-semibold"
+                to="/login"
+              >
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       </div>

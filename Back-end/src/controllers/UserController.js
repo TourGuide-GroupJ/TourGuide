@@ -12,7 +12,7 @@ dotenv.config();
 //const sendDynamicEmail = require('../utils/EmailSender'); // Assuming you have a utility function for sending emails
 
 exports.getAcceptedGuides = (req, res) => {
-  const condition = { $and: [{ IsAccepted: true }, { IsBlocked: false }] };
+  const condition = { $and: [{ IsAccepted: true }, { IsBlocked: false }, { GuideId_ExpiredDate: { $gt: new Date() } }] };
   Guide.find(condition)
     .select(
       "FirstName LastName GuideId_Number GuideId_ExpiredDate GuideType Language Email ContactNumber"
@@ -82,6 +82,7 @@ exports.loginUser = async (req, res) => {
     }
 
     let token;
+    let id;
 
     if (existingUser) {
       const isUserPasswordCorrect = await bcrypt.compare(
@@ -108,6 +109,7 @@ exports.loginUser = async (req, res) => {
       if (!isGuidePasswordCorrect) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
+      id = existingGuide._id;
       token = jwt.sign(
         { id: existingGuide._id }, // Pass relevant data as payload
         process.env.JWT_SECRET_KEY,
@@ -118,8 +120,9 @@ exports.loginUser = async (req, res) => {
     }
 
     res.status(200).json({
+      id,
       token,
-      message: "User logged in successfully",
+      message: true,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -74,5 +74,5 @@ const guideSchema = new Schema({
         required: true,
         default: false
     } 
-});
+},{timestamps:true});
 module.exports=Guide=mongoose.model('Guide', guideSchema);

@@ -16,7 +16,7 @@ try {
   const hotelRoutes = require("./routes/Hotel.routes.js");
   const adminRoutes = require("./routes/Admin.routes.js");
   const userRoutes = require("./routes/User.routes.js");
-  const auth = require("./authentication/auth.js");
+  // const auth = require("./authentication/auth.js");
 
   app.use("/guide",guideRoutes);
   app.use("/hotel",hotelRoutes);

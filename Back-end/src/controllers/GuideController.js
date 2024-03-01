@@ -63,7 +63,7 @@ let profPassword = "";
 let profSecret = "";
 
 exports.getGuideProfile = (req, res) => {
-  Guide.findById(req.params.id)
+  Guide.findById(req.user.id)
     .then((guide) => {
       return res.status(200).json({
         success: true,
@@ -80,7 +80,7 @@ exports.getGuideProfile = (req, res) => {
 
 //*********************************************************Not use */
 exports.updateAllGuide = (req, res) => {
-  Guide.findByIdAndUpdate(req.params.id, { $set: req.body })
+  Guide.findByIdAndUpdate(req.user.id, { $set: req.body })
     .then(() => {
       console.log(req.body);
       return res.status(200).json({
@@ -98,7 +98,7 @@ exports.updateAllGuide = (req, res) => {
 
 exports.updateProfileGuide = async (req, res) => {
   try {
-    Guide.findByIdAndUpdate(req.params.id, {
+    Guide.findByIdAndUpdate(req.user.id, {
       FirstName:
         req.body.FirstName.charAt(0).toUpperCase() +
         req.body.FirstName.slice(1),
@@ -128,12 +128,12 @@ exports.updateProfileGuide = async (req, res) => {
 
 exports.updateProfileSpecialGuide = async (req, res) => {
   try {
-    const guideEmail_Password = await Guide.findById(req.params.id).select(
+    const guideEmail_Password = await Guide.findById(req.user.id).select(
       "Email Password"
     );
     console.log(guideEmail_Password);
     //**********************************************************************
-    profId = req.params.id;
+    profId = req.user.id;
     profFirstName =
       req.body.FirstName.charAt(0).toUpperCase() + req.body.FirstName.slice(1);
     profLastName =
@@ -210,17 +210,3 @@ exports.otpAlertUpdate = async (req, res) => {
     });
   }
 };
-
-// exports.getAcceptedGuides = (req, res) => {
-//   const condition = { IsAccepted: true };
-//   Guide.find(condition)
-//     .select("Email GuideId_Number")
-//     .then((result) => {
-//       return res.json(result);
-//     })
-//     .catch((error) => {
-//       return res.status(400).json({
-//         Error: error,
-//       });
-//     });
-//   };

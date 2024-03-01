@@ -43,6 +43,7 @@ import AdminResponse from "./pages/AdminResponse";
 
 // import { Hotel } from "@mui/icons-material";
 
+
 const router = createBrowserRouter([
   //Navigation bar
   {
@@ -119,10 +120,10 @@ const router = createBrowserRouter([
     path: "/HotelReg",
     element: <HotelReg />,
   },
-  {
-    path: "/GuideProf",
-    element: <GuideProf />,
-  },
+   {
+     path: "/GuideProf",
+     element: <GuideProf />,
+   },
   {
     path: "/aeroplane",
     element: <AeroplaneExperience />,

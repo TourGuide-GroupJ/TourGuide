@@ -13,7 +13,7 @@ module.exports = function (req, res, next) {
       const token = req.headers.authorization.split(" ")[1];
       
       // Verify token using the TOKEN_KEY
-      jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
+      jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
         if (err) {
           // If token verification fails, send 403 Forbidden error
           console.error("JWT verification failed:", err);

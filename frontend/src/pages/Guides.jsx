@@ -6,9 +6,6 @@ import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 import axios from "axios";
 
-
-/*<div className="grid gap-12 mx-auto lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">*/
-
 const GuideComponent = ({ guideData }) => {
   return (
     <div>
@@ -20,11 +17,12 @@ const GuideComponent = ({ guideData }) => {
         email={guideData && guideData.Email}
         contact={guideData && guideData.ContactNumber}
         type={guideData && guideData.GuideType}
-        language={guideData && guideData.Language}
+        language={guideData.Language.join(", ")}
       />
     </div>
   );
 };
+export { GuideComponent };
 
 export default function Guides() {
   const [guideList, setGuideList] = useState([]);
@@ -32,7 +30,6 @@ export default function Guides() {
   const [guides, setGuides] = useState([]);
   const [guides1, setGuides1] = useState([]);
   const [guides2, setGuides2] = useState([]);
-
 
   const filterType = (guideType) => {
     setGuides1(
@@ -45,12 +42,11 @@ export default function Guides() {
   const filterLanguage = (guideLanguage) => {
     setGuides2(
       guideList.filter((guideData) => {
-        return guideData.Language === guideLanguage;
+        return guideData.Language.includes(guideLanguage);
       })
     );
   };
 
-  
   const selectType = (Event) => {
     const selectedType = Event.target.value;
     console.log(selectedType);
@@ -62,7 +58,6 @@ export default function Guides() {
     console.log(guides1);
   };
 
-  
   const selectLanguage = (Event) => {
     const selectedLanguage = Event.target.value;
     console.log(selectedLanguage);
@@ -76,6 +71,8 @@ export default function Guides() {
 
   const loadData = async () => {
     console.log("ok");
+    // const headers = { 'authorization': 'Bearer my-token' };
+
     try {
       await axios
         .get("http://localhost:4000/user/guides")
@@ -104,8 +101,8 @@ export default function Guides() {
 
   useEffect(() => {
     // Calculate the intersection when guides1 or guides2 change
-    const intersection = guides1.filter(guide1 =>
-      guides2.some(guide2 => guide2._id === guide1._id)
+    const intersection = guides1.filter((guide1) =>
+      guides2.some((guide2) => guide2._id === guide1._id)
     );
     // Update the guides state with the intersection result
     setGuides(intersection);
@@ -120,6 +117,9 @@ export default function Guides() {
   const currentGuides = guides.slice(indexOfFirstGuide, indexOfLastGuide);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const token = sessionStorage.getItem('jwtToken');
+  console.log(token);
 
   return (
     <div>

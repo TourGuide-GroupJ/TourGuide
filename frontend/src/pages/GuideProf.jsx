@@ -6,8 +6,7 @@ import OTPModal from "../alert/OTPModal";
 
 export default function GuideProf() {
   const [showOtpModal, setShowOtpModal] = useState(false);
-  
-  const [gId, setId] = useState("65b67075d2cc4ac5b9ea376a");
+
   const [guideProfData, setGuideprofData] = useState({
     FirstName: "",
     LastName: "",
@@ -38,9 +37,13 @@ export default function GuideProf() {
     Password: "",
   });
 
+  const token = sessionStorage.getItem('jwtToken');
+
   const guideProf = async () => {
+
+    const headers = { authorization: `Bearer ${token}` };
     await axios
-      .get(`http://localhost:4000/guide/guideprof/${gId}`)
+      .get("http://localhost:4000/guide/guideprof", { headers })
       .then((res) => {
         setGuideprofData(res.data.Guide);
         setUpdatedGuideData(res.data.Guide);
@@ -53,7 +56,7 @@ export default function GuideProf() {
 
   useEffect(() => {
     guideProf();
-  }, [gId]);
+  }, [token]);
 
   const firstName = (Event) => {
     setUpdatedGuideData({
@@ -114,9 +117,9 @@ export default function GuideProf() {
       updatedGuideData.Password !== guideProfData.Password
     ) {
       setShowOtpModal(true);
-      //await axios.post("",{}).then(()=>{}).catch(()=>{});
+      const headers = { authorization: `Bearer ${token}` };
       await axios
-        .put(`http://localhost:4000/guide/updateprofilespecial/${gId}`, {
+        .put(`http://localhost:4000/guide/updateprofilespecial`, { headers } ,{
           FirstName: updatedGuideData.FirstName,
           LastName: updatedGuideData.LastName,
           Language: updatedGuideData.Language,
@@ -135,8 +138,9 @@ export default function GuideProf() {
           alert(error);
         });
     } else {
+      const headers = { authorization: `Bearer ${token}` };
       await axios
-        .put(`http://localhost:4000/guide/updateprofile/${gId}`, {
+        .put(`http://localhost:4000/guide/updateprofile`, { headers } , {
           FirstName: updatedGuideData.FirstName,
           LastName: updatedGuideData.LastName,
           Language: updatedGuideData.Language,
@@ -153,7 +157,7 @@ export default function GuideProf() {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center show">
       <div className="flex flex-col gap-10">
         <div className="text-center">
           <span className="text-xl">Guide Details</span>

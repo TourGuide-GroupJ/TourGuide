@@ -53,7 +53,7 @@ export default function CreateAccount() {
                 <Button1 btnName="Guide" />
               </Link>
               <Button1 btnName="Driver/Rent vehicals" />
-              <Link to="/GuideProf">
+              <Link to="">
                 <Button1 btnName="Rent Camping Items" />
               </Link>
             </div>

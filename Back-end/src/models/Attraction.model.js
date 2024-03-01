@@ -18,5 +18,5 @@ const attractionSchema = new Schema({
         type: String,
         required: true,
     }
-});
+},{timestamps:true});
 module.exports=Attraction=mongoose.model('Attraction', attractionSchema);
