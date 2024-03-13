@@ -65,8 +65,8 @@ exports.registerUser = async (req, res) => {
     res.status(201).json({
       message: "User registered successfully",
     });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 //******************************************************************************** */
@@ -82,7 +82,7 @@ exports.loginUser = async (req, res) => {
     }
 
     let token;
-    let id;
+    let role;
 
     if (existingUser) {
       const isUserPasswordCorrect = await bcrypt.compare(
@@ -92,6 +92,7 @@ exports.loginUser = async (req, res) => {
       if (!isUserPasswordCorrect) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
+      role = "User";
       token = jwt.sign(
         { id: existingUser._id }, // Pass relevant data as payload
         process.env.JWT_SECRET_KEY,
@@ -109,7 +110,7 @@ exports.loginUser = async (req, res) => {
       if (!isGuidePasswordCorrect) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      id = existingGuide._id;
+      role = "Guide";
       token = jwt.sign(
         { id: existingGuide._id }, // Pass relevant data as payload
         process.env.JWT_SECRET_KEY,
@@ -120,12 +121,12 @@ exports.loginUser = async (req, res) => {
     }
 
     res.status(200).json({
-      id,
+      role,
       token,
-      message: true,
+      message: "Successful",
     });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 

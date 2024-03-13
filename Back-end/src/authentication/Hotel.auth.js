@@ -1,3 +1,4 @@
+const Hotel = require("../models/Hotel.model");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 dotenv.config();
@@ -20,6 +21,12 @@ module.exports = function (req, res, next) {
           return res.status(403).json({ message: "Forbidden" });
         }
         
+        //check is this guide token
+        const isHotel = Hotel.findOne({ _id: user.id });
+        if (!isHotel) {
+            return res.status(409).json({ message: "Not a Hotel" });
+        }
+
         // Attach user data to request object for further processing
         req.user = user;
         next();

@@ -28,25 +28,26 @@ export default function Login() {
           email,
           password,
         });
-        console.log("Signup successful:", response.data.id);
+        console.log("Signup successful:", response.data.role);
 
-        if (response.data.message === true) {
-          const id = response.data.id;
-          console.log(id);
+        if (response.data.message === "Successful") {
+          const role = response.data.role;
+          console.log(role);
           const token = response.data.token;
 
           // Store token in session storage
           sessionStorage.setItem('jwtToken', token);
 
-          // Store id in session storage
-
+          // Store role in session storage
+          sessionStorage.setItem('Role', role);
 
           // Handle successful signup, e.g., redirect to another page
            window.location.href = "/GuideProf";
         }
       } catch (error) {
-        console.error("Signup error:", error);
+        console.log("Signup error:", error);
         // Handle signup error, e.g., display error message to the user
+        alert(error.response.data.message);
       }
     }
   };

@@ -24,7 +24,7 @@ import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 import AdminGuide from "./pages/AdminGuide";
 import Guides from "./pages/Guides";
-import GuideProf from "./pages/GuideProf";
+import GuideProf from "./pages/profiles/GuideProf";
 import HotelReg from "./pages/HotelReg";
 import AdminHotel from "./pages/AdminHotel";
 

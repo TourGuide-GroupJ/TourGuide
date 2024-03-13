@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const guideController = require('../controllers/GuideController');
-const auth = require("../authentication/auth.js");
+const auth = require("../authentication/Guide.auth.js");
 
 router.post("/save", guideController.saveGuide);
 // router.get("/guideReg", guideController.getAcceptedGuides);
